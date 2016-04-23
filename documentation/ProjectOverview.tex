@@ -1,0 +1,148 @@
+\documentclass[]{article}
+
+\usepackage{polski}
+\usepackage[utf8]{inputenc}
+\usepackage[english, polish]{babel}
+
+\usepackage{geometry}
+\newgeometry{tmargin=2.5cm, bmargin=2.5cm, lmargin=2.5cm, rmargin=2.5cm}
+
+\setlength{\parindent}{1cm}
+
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+	\huge
+	Uniwerystet Śląski w Katowicach
+	
+	\vspace{5cm}
+		
+	\Large
+	PROJEKT APLIKACJI WEBOWEJ\\	
+	Dokumentacja wstępna projektu
+		
+	\vspace{1cm}
+	
+	\textbf{Plate - RSS Reader}
+	
+	\vspace{10cm}
+	
+	\large
+	wykonał:\\
+	Kamil Duda
+\end{center}
+
+\selectlanguage{english}
+
+\newpage
+\tableofcontents
+
+
+\newpage
+\section{Project overview}
+\hspace{0.9cm}
+The main goal of the project is to create a fully functional RSS feeds reader as a web application.
+Outcome application must allow users to register their accounts, log in and subscribe to feeds they want.
+\\In addition, there may be options for categorising and adding feeds to favourites available.\\
+Temporary name for the application - Plate.
+
+The secondary objective is to become acquainted with the technologies and frameworks which will be used.
+
+
+\section{Functional requirements}
+\subsection{User stories}
+\hspace{0.9cm}
+To get the better understanding of the customer's needs, all of the functional requirements were gathered as user stories.
+Some of the stories are more abstract or specific than the others; therefore, collected requirements shall be analyzed and transformed into tasks.
+
+
+\subsection{List of the user stories}
+
+\begin{enumerate}
+	\item Registration and logging in\\
+	As a user, I want to be able to register my account and log in in order to get access to my personalized news. 
+	
+	\item E-mail address as username\\
+	As a user, I want to be able to log in using my e-mail address so that I do not have to remember additional information (login).
+	
+	\item Facebook and Google accounts\\
+	As a user, I want to be able to register and log in using my Facebook or Google account so I do not have to create yet another account.
+	
+	\item Account management\\
+	As a user, I want to be able to manage my account e.g. change my password.
+	
+	\item Password reset\\
+	As a user, I want to be able to recover my lost or forgotten password.
+	
+	\item Feeds presentation\\
+	As a user, I want the application to present me with the latest news from the feeds I subscribed to.
+	
+	\item Feeds from URL\\
+	As a user, I want to be able to add RSS feeds to my account using their URL address.
+	
+	\item Feeds categorizing\\
+	As a user, I want to be able to add different feeds to "My favourites" list and other categories so it would be convenient to browse through news.
+	
+	\item Removing feeds\\
+	As a user, I want to be able to unsubscribe from unwanted feed so that I will not be overwhelmed with undesirable information. 
+	
+	\item Grid and list layout\\
+	As a user, I want to be able to change the way that the news are displayed e.g list or tiles.
+	
+	\item Appealing UI\\
+	As a user, I want this application to have an esthetic interface so it would be pleasant to use it.
+	
+	\item Responsive UI\\
+	As a user, I want to be able to use the application on both computer and mobile phone so I will not be restricted to only one device.
+\end{enumerate}
+
+
+\section{Non-functional requirements}
+\hspace{0.9cm}
+Besides the functional requirements, there are other concerns of which the customer may nor be aware and which must be fulfilled.
+
+
+\subsection{List of the non-functional requirements}
+\begin{enumerate}
+	\item Security\\
+	As far as the security is concerned, from the technical point of view, a secure and trustworthy way of authentication and managing user accounts must be provided.
+	A proper passwords encryption can be the solution.
+	
+	\item Extensibility\\
+	In regards to extensibility, application must be ready for extension and adding new features. It can be achieved through good system architecture, "clean code" and extensible testing.
+	
+	\item Testability\\
+	Code must be written in a mean that provides an easy way for testing it.
+	
+	\item Usability\\
+	In order to satisfy customer's difficult need for the "appealing user interface", we can utilize the concept of Single Page Application.
+	
+	
+\end{enumerate}
+
+\section{Technology used}
+\hspace{0.9cm}
+Some of the technologies may not be appropriate for the given project, they were chosen in order to get comfortable using them.
+
+\subsection{List of the used technologies}
+\begin{enumerate}
+	\item AngularJS\\
+	JavaScript Single Page Application framework that makes the creating of SPA app straightforward. Moreover, it comprises a lightweight implementation of JQuery.
+	
+	\item Bootstrap\\
+	HTML, CSS and JS framework for creating responsive and friendly-looking user interfaces.
+	
+	\item Java Spring Framework\\
+	Spring Framework is a powerful and easy-to-use tool for creating application. Along with dependency injection it provides a variety of extensions like: Spring Boot, Spring Web, Spring MVC, Spring Security, Spring Data for MongoDB.
+	
+	\item Apache Tomcat\\
+	This project contemplates the use of either Tomcat's Java servlet module - Catalyna - or even embedded Spring Boot's Tomcat server. This particular server technology was chosen for it is Open Source and has an immense user base that can provide with a helpful support.
+	
+	\item MongoDB\\
+	MongoDB is a modern NoSQL database system. It is highly scalable and provides a top-notch performance. It will be used to store users' accounts information and their RSS feeds.
+	
+	
+\end{enumerate}
+
+\end{document}
