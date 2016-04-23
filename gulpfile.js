@@ -10,8 +10,8 @@ var gulp = require("gulp"),
     del = require("del");
 
 var paths = {
-    workingDir: "./src/main/webapp/",
-    staticResources: "./src/main/resources/static/",
+    workingDir: "src/main/webapp/",
+    staticResources: "src/main/resources/static/",
     angularLibs: [
         // Angular 2 dependencies
         "./node_modules/es6-shim/es6-shim.min.js",
@@ -32,8 +32,7 @@ var paths = {
 
 gulp.task("libs", () => {
     // clean libs directory
-    del([paths.staticResources + "libs/js/*",
-        paths.staticResources + "libs/css/*"], {force: true});
+    del.sync([paths.staticResources + "libs/**"], {force: true});
 
     // copy Angular 2
     gulp.src(paths.angularLibs)
@@ -52,72 +51,65 @@ gulp.task("libs", () => {
 
 gulp.task("html", () => {
     // clean html files
-    del([paths.staticResources + "index.html",
-        paths.staticResources + "app/**/*.html"], {force: true});
+    del.sync([paths.staticResources + "**/*.html"], {force: true});
 
-    gulp.src(paths.workingDir + "index.html")
+    // copy html files
+    gulp.src(paths.workingDir + "**/*.html")
         .pipe(gulp.dest(paths.staticResources));
-
-    // copy Angular templates
-    gulp.src("./app/**/*.html")
-        .pipe(gulp.dest(paths.staticResources + "app"));
 });
 
-gulp.task("html:w", () => {
-    gulp.watch("index.html", {cwd: paths.workingDir}, ["html"]);
-
-    gulp.watch("app/**/*.html", {cwd: paths.workingDir}, ["html"]);
-
-});
-
-gulp.task("sass", function () {
+gulp.task("sass", () => {
     // clean css files
-    del([paths.staticResources + "app/**/*.css"], {force: true});
+    del.sync([paths.staticResources + "**/*.css"], {force: true});
 
     // compile sass and copy css
-    return gulp.src(paths.workingDir + "app/**/*.scss")
+    return gulp.src(paths.workingDir + "**/*.scss")
                .pipe(sass.sync().on('error', sass.logError))
-               .pipe(gulp.dest(paths.staticResources + "app"));
+               .pipe(gulp.dest(paths.staticResources));
 });
 
-gulp.task("sass:w", function () {
-    gulp.watch("app/**/*.scss", {cwd: paths.workingDir}, ['sass']);
-});
-
-gulp.task("tsc", function () {
+gulp.task("tsc", () => {
     // clean js files
-    del([paths.staticResources + "app/**/*.js"], {force: true});
+    del.sync([paths.staticResources + "**/*.js"], {force: true});
 
     // clean map files
-    del([paths.staticResources + "app/**/*.map"], {force: true});
+    del.sync([paths.staticResources + "**/*.map"], {force: true});
 
     // generate maps and compile typescript
-    var tsResult = gulp.src(paths.workingDir + "app/**/*.ts")
+    var tsResult = gulp.src(paths.workingDir + "**/*.ts")
                        .pipe(sourcemaps.init())
                        .pipe(ts(tsProject));
 
     // write maps and copy files
     return tsResult.js
                    .pipe(sourcemaps.write(""))
-                   .pipe(gulp.dest(paths.staticResources + "app"));
+                   .pipe(gulp.dest(paths.staticResources));
 
 });
 
-gulp.task("tsc:w", function () {
-    gulp.watch("app/**/*.ts", {cwd: paths.workingDir}, ["tsc"]);
-});
-
-gulp.task("json", function () {
+gulp.task("json", () => {
     // clean json files
-    del([paths.staticResources + "app/**/*.json"], {force: true});
+    del.sync([paths.staticResources + "**/*.json"], {force: true});
 
     // copy json files
-    gulp.src(paths.workingDir + "app/**/*.json")
-        .pipe(gulp.dest(paths.staticResources + "app"));
+    gulp.src(paths.workingDir + "**/*.json")
+        .pipe(gulp.dest(paths.staticResources));
+});
+
+gulp.task("html:w", () => {
+    gulp.watch("**/*.html", {cwd: paths.workingDir}, ["html"]);
+});
+
+gulp.task("sass:w", () => {
+    gulp.watch("**/*.scss", {cwd: paths.workingDir}, ['sass']);
+});
+
+gulp.task("tsc:w", () => {
+    gulp.watch("**/*.ts", {cwd: paths.workingDir}, ["tsc"]);
 });
 
 gulp.task("json:w", () => {
-    gulp.watch("app/**/*.json", {cwd: paths.workingDir}, ["json"]);
+    gulp.watch("**/*.json", {cwd: paths.workingDir}, ["json"]);
 });
 
 gulp.task("default", ["build"]);
