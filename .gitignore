@@ -68,7 +68,7 @@ node
 src/main/resources/static
 src/main/resources/templates
 
-# do not ignore anything in static content
+# do not ignore anything in webapp source
 !src/main/resources/webapp
 
 typings
