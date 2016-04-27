@@ -71,10 +71,10 @@ gulp.task("sass", () => {
 
 gulp.task("tsc", () => {
     // clean js files
-    del.sync([paths.staticResources + "**/*.js"], {force: true});
+    del.sync([paths.staticResources + "app/**/*.js"], {force: true});
 
     // clean map files
-    del.sync([paths.staticResources + "**/*.map"], {force: true});
+    del.sync([paths.staticResources + "app/**/*.map"], {force: true});
 
     // generate maps and compile typescript
     var tsResult = gulp.src(paths.workingDir + "**/*.ts")
