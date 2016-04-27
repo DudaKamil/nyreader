@@ -61,7 +61,8 @@ gulp.task("html", () => {
 
 gulp.task("sass", () => {
     // clean css files
-    del.sync([paths.staticResources + "**/*.css"], {force: true});
+    del.sync([paths.staticResources + "app/**/*.css",
+        paths.staticResources + "app/*.css"], {force: true});
 
     // compile sass and copy css
     return gulp.src(paths.workingDir + "**/*.scss")
