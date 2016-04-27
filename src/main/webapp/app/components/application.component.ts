@@ -2,6 +2,8 @@ import {Component} from "angular2/core";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {TranslatePipe, TranslateService} from "ng2-translate";
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
 
 @Component({
     selector: "application",
@@ -11,11 +13,12 @@ import {TranslatePipe, TranslateService} from "ng2-translate";
     pipes: [TranslatePipe]
 })
 @RouteConfig([
-    {path: "/welcome", name: "Welcome", component: WelcomeComponent},
-    {path: "/**", redirectTo: ["Welcome"]}
+    {path: "/welcome", name: "Welcome", component: WelcomeComponent, useAsDefault: true},
+    {path: "/login", name: "Login", component: LoginComponent},
+    {path: "/register", name: "Register", component: RegisterComponent}
+
 ])
 export class ApplicationComponent {
-
     constructor(private translate: TranslateService) {
         this.translate = translate;
         let userLang = navigator.language.split("-")[0]; // use navigator lang if available
