@@ -63,6 +63,9 @@ crashlytics-build.properties
 node_modules
 node
 
+# Configuration
+application.yml
+
 ## Angular2
 # dist files
 src/main/resources/static
