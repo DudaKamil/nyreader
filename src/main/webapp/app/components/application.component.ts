@@ -2,8 +2,8 @@ import {Component} from "angular2/core";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {TranslatePipe, TranslateService} from "ng2-translate";
-import {LoginComponent} from "./login/login.component";
-import {RegisterComponent} from "./register/register.component";
+import {LoginComponent} from "./auth/login/login.component";
+import {RegisterComponent} from "./auth/register/register.component";
 
 @Component({
     selector: "application",

@@ -1,4 +1,9 @@
-<div class="sidebar">sidebar</div>
+<div class="sidebar">
+    <ul>
+        <li><a [routerLink]="['Login']" class="btn btn-primary btn-lg"> Login</a></li>
+        <li><a [routerLink]="['Register']" class="btn btn-primary btn-lg"> Register</a></li>
+    </ul>
+</div>
 
 <div class="content container">
     <router-outlet></router-outlet>
