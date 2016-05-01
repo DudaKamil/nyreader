@@ -5,6 +5,7 @@ import {ApplicationComponent} from "./components/application.component";
 import {provide} from "angular2/core";
 import {TRANSLATE_PROVIDERS, TranslateLoader, TranslateStaticLoader} from "ng2-translate";
 
+
 bootstrap(ApplicationComponent,
     [ROUTER_PROVIDERS, HTTP_PROVIDERS, TRANSLATE_PROVIDERS,
         provide(TranslateLoader, {
@@ -12,4 +13,3 @@ bootstrap(ApplicationComponent,
             deps: [Http]
         })
     ]);
-

@@ -2,7 +2,7 @@ import {Component} from "angular2/core";
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {TranslatePipe, TranslateService} from "ng2-translate";
-import {LoginComponent} from "./auth/login/login.component";
+import {LoginComponent} from "./auth/login/login-form.component";
 import {RegisterComponent} from "./auth/register/register.component";
 
 @Component({
@@ -15,8 +15,8 @@ import {RegisterComponent} from "./auth/register/register.component";
 @RouteConfig([
     {path: "/welcome", name: "Welcome", component: WelcomeComponent, useAsDefault: true},
     {path: "/login", name: "Login", component: LoginComponent},
-    {path: "/register", name: "Register", component: RegisterComponent}
-
+    {path: "/register", name: "Register", component: RegisterComponent},
+    {path: "/**", redirectTo: ["Welcome"]}
 ])
 export class ApplicationComponent {
     constructor(private translate: TranslateService) {
