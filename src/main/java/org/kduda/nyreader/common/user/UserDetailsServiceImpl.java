@@ -1,6 +1,6 @@
 package org.kduda.nyreader.common.user;
 
-import org.kduda.nyreader.security.JwtUserFactory;
+import org.kduda.nyreader.security.common.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

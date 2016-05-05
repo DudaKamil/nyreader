@@ -1,4 +1,4 @@
-package org.kduda.nyreader.security;
+package org.kduda.nyreader.security.domain;
 
 import org.kduda.nyreader.common.user.UserDetailsServiceImpl;
 import org.kduda.nyreader.security.utils.JwtTokenUtil;
@@ -17,7 +17,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-public class JwtAuthenticationTokenFilter extends UsernamePasswordAuthenticationFilter {
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 	@Value("${jwt.token.header}")
 	private String TOKEN_HEADER;
 

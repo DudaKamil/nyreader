@@ -1,8 +1,8 @@
 package org.kduda.nyreader.configuration;
 
 import org.kduda.nyreader.common.user.UserDetailsServiceImpl;
-import org.kduda.nyreader.security.JwtAuthenticationEntryPoint;
-import org.kduda.nyreader.security.JwtAuthenticationTokenFilter;
+import org.kduda.nyreader.security.domain.JwtAuthenticationEntryPoint;
+import org.kduda.nyreader.security.domain.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -46,8 +46,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
-		JwtAuthenticationTokenFilter authenticationTokenFilter = new JwtAuthenticationTokenFilter();
+	public JwtAuthenticationFilter authenticationTokenFilterBean() throws Exception {
+		JwtAuthenticationFilter authenticationTokenFilter = new JwtAuthenticationFilter();
 		authenticationTokenFilter.setAuthenticationManager(authenticationManagerBean());
 		return authenticationTokenFilter;
 	}

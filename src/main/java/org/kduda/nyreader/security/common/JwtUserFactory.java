@@ -1,4 +1,4 @@
-package org.kduda.nyreader.security;
+package org.kduda.nyreader.security.common;
 
 import org.kduda.nyreader.common.user.User;
 

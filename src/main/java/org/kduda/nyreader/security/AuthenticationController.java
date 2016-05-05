@@ -1,8 +1,8 @@
-package org.kduda.nyreader.security.controllers;
+package org.kduda.nyreader.security;
 
 import org.kduda.nyreader.common.user.UserDetailsServiceImpl;
-import org.kduda.nyreader.security.JwtAuthenticationRequest;
-import org.kduda.nyreader.security.JwtUser;
+import org.kduda.nyreader.security.domain.JwtAuthenticationRequest;
+import org.kduda.nyreader.security.common.JwtUser;
 import org.kduda.nyreader.security.service.JwtAuthenticationResponse;
 import org.kduda.nyreader.security.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;

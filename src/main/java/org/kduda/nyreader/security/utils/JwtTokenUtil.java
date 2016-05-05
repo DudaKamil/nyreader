@@ -3,7 +3,7 @@ package org.kduda.nyreader.security.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import org.kduda.nyreader.security.JwtUser;
+import org.kduda.nyreader.security.common.JwtUser;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mobile.device.Device;
 import org.springframework.security.core.userdetails.UserDetails;

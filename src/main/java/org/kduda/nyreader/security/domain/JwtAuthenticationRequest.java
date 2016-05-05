@@ -1,4 +1,4 @@
-package org.kduda.nyreader.security;
+package org.kduda.nyreader.security.domain;
 
 import java.io.Serializable;
 

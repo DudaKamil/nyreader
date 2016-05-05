@@ -1,4 +1,4 @@
-package org.kduda.nyreader.security;
+package org.kduda.nyreader.security.domain;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
