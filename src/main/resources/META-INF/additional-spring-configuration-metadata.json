@@ -13,7 +13,7 @@
     {
       "name": "jwt.token.expiration",
       "type": "java.lang.String",
-      "description": "JWT Token expiration time."
+      "description": "JWT Token expiration time in milliseconds."
     }
   ]
 }

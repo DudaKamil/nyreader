@@ -15,7 +15,7 @@ jwt:
   token:
     header: Authorization
     secret: mySecret
-    expiration: 604800
+    expiration: 600000
 
 server:
   context-path:

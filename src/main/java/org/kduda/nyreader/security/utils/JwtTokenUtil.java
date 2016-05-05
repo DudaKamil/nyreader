@@ -32,6 +32,75 @@ public class JwtTokenUtil implements Serializable {
 	@Value("${jwt.token.expiration}")
 	private Long expiration;
 
+	/**
+	 * Prepares all the claims and generates a new JWT Token.
+	 *
+	 * @param userDetails user details to be encoded into the token
+	 * @param device      device type
+	 * @return
+	 */
+	public String generateToken(UserDetails userDetails, Device device) {
+		Map<String, Object> claims = new HashMap<>();
+		claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
+		claims.put(CLAIM_KEY_AUDIENCE, generateAudience(device));
+		claims.put(CLAIM_KEY_CREATED, new Date());
+		return generateToken(claims);
+	}
+
+	private String generateToken(Map<String, Object> claims) {
+		return Jwts.builder()
+		           .setClaims(claims)
+		           .setExpiration(generateExpirationDate())
+		           .signWith(SignatureAlgorithm.HS512, secret)
+		           .compact();
+	}
+
+	private Date generateExpirationDate() {
+		return new Date(System.currentTimeMillis() + expiration * 1000);
+	}
+
+	/**
+	 * Checks if the username of token barer is valid and the token itself has not expired.
+	 *
+	 * @param token       token to be checked
+	 * @param userDetails details to compare
+	 * @return check result
+	 */
+	public Boolean validateToken(String token, UserDetails userDetails) {
+		JwtUser user = (JwtUser) userDetails;
+		final String username = getUsernameFromToken(token);
+
+		return (username.equals(user.getUsername()) && !isTokenExpired(token));
+	}
+
+	/**
+	 * Checks if the given token can be refreshed by looking at its expiration date.
+	 *
+	 * @param token token to be checked
+	 * @return check result
+	 */
+	public Boolean canTokenBeRefreshed(String token) {
+		return (!isTokenExpired(token) || ignoreTokenExpiration(token));
+	}
+
+	/**
+	 * Creates a new, fresh token.
+	 *
+	 * @param token token to be refreshed
+	 * @return new, refreshed token
+	 */
+	public String refreshToken(String token) {
+		String refreshedToken;
+		try {
+			final Claims claims = getClaimsFromToken(token);
+			claims.put(CLAIM_KEY_CREATED, new Date());
+			refreshedToken = generateToken(claims);
+		} catch (Exception e) {
+			refreshedToken = null;
+		}
+		return refreshedToken;
+	}
+
 	public String getUsernameFromToken(String token) {
 		String username;
 		try {
@@ -89,10 +158,6 @@ public class JwtTokenUtil implements Serializable {
 		return claims;
 	}
 
-	private Date generateExpirationDate() {
-		return new Date(System.currentTimeMillis() + expiration * 1000);
-	}
-
 	private Boolean isTokenExpired(String token) {
 		final Date expiration = getExpirationDateFromToken(token);
 		return expiration.before(new Date());
@@ -113,64 +178,5 @@ public class JwtTokenUtil implements Serializable {
 	private Boolean ignoreTokenExpiration(String token) {
 		String audience = getAudienceFromToken(token);
 		return (AUDIENCE_TABLET.equals(audience) || AUDIENCE_MOBILE.equals(audience));
-	}
-
-	/**
-	 * Prepares all the claims and generates a new JWT Token.
-	 *
-	 * @param userDetails user details to be encoded into the token
-	 * @param device device type
-	 * @return
-	 */
-	public String generateToken(UserDetails userDetails, Device device) {
-		Map<String, Object> claims = new HashMap<>();
-		claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
-		claims.put(CLAIM_KEY_AUDIENCE, generateAudience(device));
-		claims.put(CLAIM_KEY_CREATED, new Date());
-		return generateToken(claims);
-	}
-
-	private String generateToken(Map<String, Object> claims) {
-		return Jwts.builder()
-		           .setClaims(claims)
-		           .setExpiration(generateExpirationDate())
-		           .signWith(SignatureAlgorithm.HS512, secret)
-		           .compact();
-	}
-
-	public Boolean canTokenBeRefreshed(String token) {
-		return (!isTokenExpired(token) || ignoreTokenExpiration(token));
-	}
-
-	/**
-	 * Creates a new, fresh token.
-	 *
-	 * @param token token to be refreshed
-	 * @return new, refreshed token
-	 */
-	public String refreshToken(String token) {
-		String refreshedToken;
-		try {
-			final Claims claims = getClaimsFromToken(token);
-			claims.put(CLAIM_KEY_CREATED, new Date());
-			refreshedToken = generateToken(claims);
-		} catch (Exception e) {
-			refreshedToken = null;
-		}
-		return refreshedToken;
-	}
-
-	/**
-	 * Checks if the username of token barer is valid and the token itself has not expired.
-	 *
-	 * @param token token to be checked
-	 * @param userDetails details to compare
-	 * @return check result
-	 */
-	public Boolean validateToken(String token, UserDetails userDetails) {
-		JwtUser user = (JwtUser) userDetails;
-		final String username = getUsernameFromToken(token);
-
-		return (username.equals(user.getUsername()) && !isTokenExpired(token));
 	}
 }
