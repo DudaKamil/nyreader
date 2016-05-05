@@ -21,10 +21,10 @@ export class LoginComponent {
     }
 
     onSubmit() {
-        this._submitted = true;
-        this.model = new User("", "");
-        this.active = false;
-        // TODO: temporary workaround while there is no proper form reset feature
+        // Reset the form with a new hero AND restore 'pristine' class state
+        // by toggling 'active' flag which causes the form
+        // to be removed/re-added in a tick via NgIf
+        // TODO: Workaround until NgForm has a reset method (#6822)
         setTimeout(() => this.active = true, 0);
 
         this._authenticationService.authenticate(this.model)
@@ -40,6 +40,10 @@ export class LoginComponent {
                     console.log(this.error);
                 }
             );
+
+        this._submitted = true;
+        this.model = new User("", "");
+        this.active = false;
     }
 
 }

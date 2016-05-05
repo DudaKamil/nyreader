@@ -2,3 +2,23 @@ spring:
   data:
     mongodb:
       database:
+  jackson:
+    serialization:
+      INDENT_OUTPUT: true
+
+logging:
+  level:
+    org.springframework:
+      security: DEBUG
+
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
+  route:
+    authentication:
+      path: auth
+      refresh: refresh
+
+server:
+  context-path:

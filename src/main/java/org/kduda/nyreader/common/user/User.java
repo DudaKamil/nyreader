@@ -1,4 +1,4 @@
-package org.kduda.nyreader.common.User;
+package org.kduda.nyreader.common.user;
 
 import org.springframework.data.annotation.Id;
 
@@ -8,11 +8,6 @@ public class User {
 
 	private String username;
 	private String password;
-
-	public User(String username, String password) {
-		this.username = username;
-		this.password = password;
-	}
 
 	public String getUsername() {
 		return username;
@@ -30,9 +25,17 @@ public class User {
 		this.password = password;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	@Override
 	public String toString() {
-		return "User{" +
+		return "user{" +
 			"id='" + id + '\'' +
 			", username='" + username + '\'' +
 			", password='" + password + '\'' +

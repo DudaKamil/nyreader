@@ -1,29 +1,91 @@
 package org.kduda.nyreader.configuration;
 
-import org.kduda.nyreader.common.User.UserDetailsServiceImpl;
+import org.kduda.nyreader.common.user.UserDetailsServiceImpl;
+import org.kduda.nyreader.security.JwtAuthenticationEntryPoint;
+import org.kduda.nyreader.security.JwtAuthenticationTokenFilter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.stereotype.Component;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-@Component
+@Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
-	UserDetailsServiceImpl userDetailsServiceImpl;
+	private JwtAuthenticationEntryPoint unauthorizedHandler;
+
+	@Autowired
+	private UserDetailsServiceImpl userDetailsService;
+
+	@Bean
+	@Override
+	public AuthenticationManager authenticationManagerBean() throws Exception {
+		return super.authenticationManagerBean();
+	}
 
 	@Autowired
 	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsServiceImpl);
+		auth
+			.userDetailsService(this.userDetailsService)
+			.passwordEncoder(passwordEncoder());
+	}
+
+	@Bean
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
+	@Bean
+	public JwtAuthenticationTokenFilter authenticationTokenFilterBean() throws Exception {
+		JwtAuthenticationTokenFilter authenticationTokenFilter = new JwtAuthenticationTokenFilter();
+		authenticationTokenFilter.setAuthenticationManager(authenticationManagerBean());
+		return authenticationTokenFilter;
 	}
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+// old configuration
+//		http
+//			.httpBasic()
+//			.and()
+//			.authorizeRequests().antMatchers("/welcome", "/login", "/register", "/").permitAll()
+//			.and()
+//			.csrf().disable()
+//			.formLogin().loginPage("/login").loginProcessingUrl("/authentication/login/process").permitAll();
+
 		http
-			.authorizeRequests().antMatchers("/**").permitAll()
-			.and().formLogin().loginPage("/login")
-			.loginProcessingUrl("/authentication/login/process");
+			.csrf().disable()
+			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
+			.and()
+			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+			.and()
+			.authorizeRequests()
+			//.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+			// allow anonymous resource requests
+			.antMatchers("/welcome", "/login", "/register", "/", "/*.html",
+				"/favicon.ico",
+				"/**/*.html",
+				"/**/*.css",
+				"/**/*.json",
+				"/**/*.js").permitAll()
+			.antMatchers("/auth/**").permitAll()
+			.anyRequest().authenticated();
+
+		// Custom JWT based security filter
+		http
+			.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
+
+		// disable page caching
+		http.headers().cacheControl();
 	}
 }

@@ -1,19 +1,22 @@
 import {Injectable} from "angular2/core";
-import {Http} from "angular2/http";
+import {Http, Headers, RequestOptions} from "angular2/http";
+import {User} from "../common/user";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class AuthenticationService {
     constructor(private _http: Http) {
     }
 
-    authenticate(username: string, password: string) {
-        let user: any = {
-            username: username,
-            password: password
-        };
+    authenticate(user: User): Observable<any> {
+        let userData: string = JSON.stringify(user);
+        let headers = new Headers({
+            "Content-Type": "application/json; charset=utf-8",
+            "dataType": "json"
+        });
+        let options = new RequestOptions({headers: headers});
 
-        console.log(this._http.post("/authentication/login/process", user));
-       this._http.post("/authentication/login/process", user)
-           .subscribe();
+        // return this._http.post("/authentication/login/process", userData);
+        return this._http.post("/auth", userData, options);
     }
 }

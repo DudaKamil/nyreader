@@ -1,5 +1,6 @@
-package org.kduda.nyreader.common.User;
+package org.kduda.nyreader.common.user;
 
+import org.kduda.nyreader.security.JwtUserFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,7 +19,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 		if (user == null)
 			throw new UsernameNotFoundException(username);
 		else {
-			return new UserDetailsImpl(user);
+			return JwtUserFactory.create(user);
 		}
 	}
 }
