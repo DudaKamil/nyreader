@@ -16,8 +16,6 @@ import java.util.Map;
 
 @Component
 public class JwtTokenUtil implements Serializable {
-	private static final long serialVersionUID = -3301605591108950415L;
-
 	private static final String CLAIM_KEY_USERNAME = "sub";
 	private static final String CLAIM_KEY_AUDIENCE = "audience";
 	private static final String CLAIM_KEY_CREATED = "created";
@@ -27,10 +25,10 @@ public class JwtTokenUtil implements Serializable {
 	private static final String AUDIENCE_MOBILE = "mobile";
 	private static final String AUDIENCE_TABLET = "tablet";
 
-	@Value("${jwt.secret}")
+	@Value("${jwt.token.secret}")
 	private String secret;
 
-	@Value("${jwt.expiration}")
+	@Value("${jwt.token.expiration}")
 	private Long expiration;
 
 	public String getUsernameFromToken(String token) {
@@ -131,7 +129,6 @@ public class JwtTokenUtil implements Serializable {
 		           .signWith(SignatureAlgorithm.HS512, secret)
 		           .compact();
 	}
-
 
 	public Boolean canTokenBeRefreshed(String token) {
 		return (!isTokenExpired(token) || ignoreTokenExpiration(token));

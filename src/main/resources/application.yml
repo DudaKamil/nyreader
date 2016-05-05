@@ -12,13 +12,10 @@ logging:
       security: DEBUG
 
 jwt:
-  header: Authorization
-  secret: mySecret
-  expiration: 604800
-  route:
-    authentication:
-      path: auth
-      refresh: refresh
+  token:
+    header: Authorization
+    secret: mySecret
+    expiration: 604800
 
 server:
   context-path:

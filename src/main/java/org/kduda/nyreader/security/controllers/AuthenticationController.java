@@ -23,10 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-public class AuthenticationRestController {
-
-	@Value("${jwt.header}")
-	private String tokenHeader;
+public class AuthenticationController {
+	@Value("${jwt.token.header}")
+	private String TOKEN_HEADER;
 
 	@Autowired
 	private AuthenticationManager authenticationManager;
@@ -37,31 +36,29 @@ public class AuthenticationRestController {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-	// TODO: refactor
-	@RequestMapping(value = "${jwt.route.authentication.path}", method = RequestMethod.POST)
+	@RequestMapping(value = "/auth/login", method = RequestMethod.POST)
 	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device)
 		throws AuthenticationException {
 
-		// Perform the security
-		final Authentication authentication = authenticationManager.authenticate(
-			new UsernamePasswordAuthenticationToken(
-				authenticationRequest.getUsername(),
-				authenticationRequest.getPassword()
-			)
+		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+			authenticationRequest.getUsername(),
+			authenticationRequest.getPassword()
 		);
+
+		final Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		// Reload password post-security so we can generate token
 		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
 		final String token = jwtTokenUtil.generateToken(userDetails, device);
 
-		// Return the token
 		return ResponseEntity.ok(new JwtAuthenticationResponse(token));
 	}
 
-	@RequestMapping(value = "${jwt.route.authentication.refresh}", method = RequestMethod.GET)
+	// TODO: check method in front-end
+	@RequestMapping(value = "/auth/refresh", method = RequestMethod.GET)
 	public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
-		String token = request.getHeader(tokenHeader);
+		String token = request.getHeader(TOKEN_HEADER);
 		String username = jwtTokenUtil.getUsernameFromToken(token);
 		JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
 

@@ -7,7 +7,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 
 public class JwtUser implements UserDetails {
-
 	private final String id;
 	private final String username;
 	private final String password;
@@ -18,6 +17,7 @@ public class JwtUser implements UserDetails {
 		this.password = password;
 	}
 
+	@JsonIgnore
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return null;

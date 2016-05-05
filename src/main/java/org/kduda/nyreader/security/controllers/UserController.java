@@ -12,10 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-public class UserRestController {
-
-	@Value("${jwt.header}")
-	private String tokenHeader;
+public class UserController {
+	@Value("${jwt.token.header}")
+	private String TOKEN_HEADER;
 
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
@@ -23,15 +22,11 @@ public class UserRestController {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-//	@Autowired
-//	private UserDetailsService userDetailsService;
-
 	@RequestMapping(value = "user", method = RequestMethod.GET)
 	public JwtUser getAuthenticatedUser(HttpServletRequest request) {
-		String token = request.getHeader(tokenHeader);
+		String token = request.getHeader(TOKEN_HEADER);
 		String username = jwtTokenUtil.getUsernameFromToken(token);
-		JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
-		return user;
+		return (JwtUser) userDetailsService.loadUserByUsername(username);
 	}
 
 }

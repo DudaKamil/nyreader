@@ -54,15 +54,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-// old configuration
-//		http
-//			.httpBasic()
-//			.and()
-//			.authorizeRequests().antMatchers("/welcome", "/login", "/register", "/").permitAll()
-//			.and()
-//			.csrf().disable()
-//			.formLogin().loginPage("/login").loginProcessingUrl("/authentication/login/process").permitAll();
-
 		http
 			.csrf().disable()
 			.exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
@@ -70,22 +61,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			.authorizeRequests()
-			//.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-			// allow anonymous resource requests
-			.antMatchers("/welcome", "/login", "/register", "/", "/*.html",
-				"/favicon.ico",
+			.antMatchers("/welcome", "/login", "/register", "/",
 				"/**/*.html",
 				"/**/*.css",
-				"/**/*.json",
-				"/**/*.js").permitAll()
+				"/**/*.js",
+				"/**/*.json").permitAll()
 			.antMatchers("/auth/**").permitAll()
 			.anyRequest().authenticated();
 
-		// Custom JWT based security filter
 		http
 			.addFilterBefore(authenticationTokenFilterBean(), UsernamePasswordAuthenticationFilter.class);
 
-		// disable page caching
 		http.headers().cacheControl();
 	}
 }

@@ -16,7 +16,6 @@ export class AuthenticationService {
         });
         let options = new RequestOptions({headers: headers});
 
-        // return this._http.post("/authentication/login/process", userData);
-        return this._http.post("/auth", userData, options);
+        return this._http.post("/auth/login", userData, options);
     }
 }
