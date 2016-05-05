@@ -1,0 +1,19 @@
+{
+  "properties": [
+    {
+      "name": "jwt.token.header",
+      "type": "java.lang.String",
+      "description": "JWT Token header name."
+    },
+    {
+      "name": "jwt.token.secret",
+      "type": "java.lang.String",
+      "description": "JWT Token generating secret."
+    },
+    {
+      "name": "jwt.token.expiration",
+      "type": "java.lang.String",
+      "description": "JWT Token expiration time."
+    }
+  ]
+}
