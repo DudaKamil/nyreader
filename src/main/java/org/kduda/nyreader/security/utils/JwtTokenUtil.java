@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+// TODO: check and refactor
 @Component
 public class JwtTokenUtil implements Serializable {
 	private static final String CLAIM_KEY_USERNAME = "sub";
@@ -114,6 +115,13 @@ public class JwtTokenUtil implements Serializable {
 		return (AUDIENCE_TABLET.equals(audience) || AUDIENCE_MOBILE.equals(audience));
 	}
 
+	/**
+	 * Prepares all the claims and generates a new JWT Token.
+	 *
+	 * @param userDetails user details to be encoded into the token
+	 * @param device device type
+	 * @return
+	 */
 	public String generateToken(UserDetails userDetails, Device device) {
 		Map<String, Object> claims = new HashMap<>();
 		claims.put(CLAIM_KEY_USERNAME, userDetails.getUsername());
@@ -134,6 +142,12 @@ public class JwtTokenUtil implements Serializable {
 		return (!isTokenExpired(token) || ignoreTokenExpiration(token));
 	}
 
+	/**
+	 * Creates a new, fresh token.
+	 *
+	 * @param token token to be refreshed
+	 * @return new, refreshed token
+	 */
 	public String refreshToken(String token) {
 		String refreshedToken;
 		try {
@@ -146,12 +160,17 @@ public class JwtTokenUtil implements Serializable {
 		return refreshedToken;
 	}
 
+	/**
+	 * Checks if the username of token barer is valid and the token itself has not expired.
+	 *
+	 * @param token token to be checked
+	 * @param userDetails details to compare
+	 * @return check result
+	 */
 	public Boolean validateToken(String token, UserDetails userDetails) {
 		JwtUser user = (JwtUser) userDetails;
 		final String username = getUsernameFromToken(token);
 
-		return (
-			username.equals(user.getUsername())
-				&& !isTokenExpired(token));
+		return (username.equals(user.getUsername()) && !isTokenExpired(token));
 	}
 }
