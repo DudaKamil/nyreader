@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class AuthenticationService {
+    private _loginEndpoint: string = "/auth/login";
+
     constructor(private _http: Http) {
     }
 
@@ -17,7 +19,7 @@ export class AuthenticationService {
         let options = new RequestOptions({headers: headers});
 
         // TODO: map method does not work
-        let response: Observable<Response> = this._http.post("/auth/login", userData, options);
+        let response: Observable<Response> = this._http.post(this._loginEndpoint, userData, options);
 
         response.subscribe(
             res => {
