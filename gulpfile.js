@@ -12,19 +12,19 @@ var gulp = require("gulp"),
 var paths = {
     workingDir: "src/main/webapp/",
     staticResources: "src/main/resources/static/",
-    angularLibs: [
-        // Angular 2 dependencies
-        "./node_modules/es6-shim/es6-shim.min.js",
-        "./node_modules/systemjs/dist/system-polyfills.js",
-        "./node_modules/angular2/es6/dev/src/testing/shims_for_IE.js",
-        "./node_modules/angular2/bundles/angular2-polyfills.js",
-        "./node_modules/systemjs/dist/system.src.js",
-        "./node_modules/rxjs/bundles/Rx.js",
-        "./node_modules/angular2/bundles/angular2.dev.js",
-        "./node_modules/angular2/bundles/http.dev.js",
-        "./node_modules/angular2/bundles/router.dev.js",
-        "./node_modules/ng2-translate/bundles/ng2-translate.js"
+    angular2: [
+        // Angular 2 and required dependencies
+        "./node_modules/@angular/**/*"
     ],
+    angular2dependencies: [
+        "./node_modules/es6-shim/es6-shim.min.js",
+        "./node_modules/zone.js/dist/zone.js",
+        "./node_modules/reflect-metadata/Reflect.js",
+        "./node_modules/systemjs/dist/system.src.js"
+    ],
+    systemjsConfig: ["src/main/webapp/systemjs.config.js"],
+    rxjs: ["./node_modules/rxjs/**/*"],
+    ng2translate: ["./node_modules/ng2-translate/bundles/ng2-translate.js"],
     bootstrapCss: ["./node_modules/bootstrap/dist/css/bootstrap.css"],
     bootstrapJs: [
         "./node_modules/bootstrap/dist/js/bootstrap.min.js",
@@ -36,9 +36,20 @@ gulp.task("libs", () => {
     del.sync([paths.staticResources + "libs/**"], {force: true});
 
     // copy Angular 2
-    gulp.src(paths.angularLibs)
-        // .pipe(concat("libs.js"))
+    gulp.src(paths.angular2)
+        .pipe(gulp.dest(paths.staticResources + "libs/js/@angular"));
+
+    // copy Angular 2 dependencies
+    gulp.src(paths.angular2dependencies)
         .pipe(gulp.dest(paths.staticResources + "libs/js"));
+
+    // copy RXJS
+    gulp.src(paths.rxjs)
+        .pipe(gulp.dest(paths.staticResources + "libs/js/rxjs"));
+
+    // copy Angular 2 translate library
+    gulp.src(paths.ng2translate)
+        .pipe(gulp.dest(paths.staticResources + "libs/js/ng2-translate"));
 
     // copy Bootstrap JS
     gulp.src(paths.bootstrapJs)
@@ -48,6 +59,9 @@ gulp.task("libs", () => {
     gulp.src(paths.bootstrapCss)
         .pipe(gulp.dest(paths.staticResources + "libs/css"));
 
+    // copy SystemJS Configuration (javascript file)
+    gulp.src(paths.systemjsConfig)
+        .pipe(gulp.dest(paths.staticResources));
 });
 
 gulp.task("html", () => {

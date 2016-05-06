@@ -1,11 +1,12 @@
-import {Component} from "angular2/core";
-import {ROUTER_DIRECTIVES} from "angular2/router";
+import {Component} from "@angular/core";
+import {ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {TranslatePipe} from "ng2-translate";
 
 @Component({
     templateUrl: "app/components/welcome/welcome.component.html",
     directives: [ROUTER_DIRECTIVES],
-    pipes: [TranslatePipe]
+    pipes: []
+    // pipes: [TranslatePipe]
 })
 export class WelcomeComponent {
 }
