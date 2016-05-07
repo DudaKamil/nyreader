@@ -6,8 +6,8 @@
                 <form novalidate (submit)="onSubmit()" *ngIf="active" #loginForm="ngForm">
                     <div class="form-group">
                         <label for="username">Email</label>
-                        <input id="username" type="email" class="form-control" [(ngModel)]="model.username"
-                               ngControl="username" #username="ngForm" required>
+                        <input id="username" type="email" class="form-control" placeholder="email"
+                               [(ngModel)]="model.username" ngControl="username" #username="ngForm" required>
                     </div>
                     <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
                         <b>Email address</b> is required!
@@ -15,8 +15,8 @@
 
                     <div class="form-group">
                         <label for="password">Password</label>
-                        <input id="password" type="password" class="form-control" [(ngModel)]="model.password"
-                               ngControl="password" #password="ngForm" required>
+                        <input id="password" type="password" class="form-control" placeholder="password"
+                               [(ngModel)]="model.password" ngControl="password" #password="ngForm" required>
                     </div>
                     <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
                         <b>Password</b> is required!

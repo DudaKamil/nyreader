@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
+import {FormBuilder, Validators} from "@angular/common";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {User} from "../../../common/user";
+import {ValidationService} from "../../../services/validation.service";
 
 @Component({
     templateUrl: "app/components/auth/register/register-form.component.html",
@@ -13,8 +15,15 @@ export class RegisterComponent {
     public active: boolean;
     public msg: any;
     public error: any;
+    public registerForm: any;
 
-    constructor(private _authenticationService: AuthenticationService) {
+    constructor(private _authenticationService: AuthenticationService,
+                private _formBuilder: FormBuilder) {
+        this.registerForm = _formBuilder.group({
+            username: ["", Validators.compose([Validators.required, ValidationService.emailValidator])],
+            password: ["", Validators.compose([Validators.required, Validators.minLength(6)])]
+        });
+
         this._submitted = false;
         this.active = true;
         this.model = new User("", "");
