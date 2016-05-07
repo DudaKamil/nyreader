@@ -1,10 +1,11 @@
 import {Component} from "@angular/core";
-import {RouteConfig, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
+import {RouteConfig, ROUTER_DIRECTIVES, Router} from "@angular/router-deprecated";
 import {TranslatePipe, TranslateService} from "ng2-translate";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {LoginComponent} from "./auth/login/login-form.component";
 import {RegisterComponent} from "./auth/register/register-form.component";
 import {AuthenticationService} from "../services/authentication.service";
+import {isAuthenticated} from "../services/is-authenticated";
 
 @Component({
     selector: "application",
@@ -18,14 +19,11 @@ import {AuthenticationService} from "../services/authentication.service";
 @RouteConfig([
     {path: "/welcome", name: "Welcome", component: WelcomeComponent, useAsDefault: true},
     {path: "/login", name: "Login", component: LoginComponent},
-    {path: "/register", name: "Register", component: RegisterComponent},
-    {path: "/**", redirectTo: ["Welcome"]}
+    {path: "/register", name: "Register", component: RegisterComponent}
 ])
 export class ApplicationComponent {
-    public isAuthenticated: boolean;
-
-    constructor(private _authenticationService: AuthenticationService) {
-        this.isAuthenticated = _authenticationService.isAuthenticated;
+    constructor(private _authenticationService: AuthenticationService,
+                private _router: Router) {
     }
 
     // TODO: ng2-translate for angular 2 rc
@@ -45,7 +43,12 @@ export class ApplicationComponent {
     //     this.translate.use(language);
     // }
 
-    logout() {
+    logout(): void {
         this._authenticationService.logout();
+        this._router.navigate(["Welcome"]);
+    }
+
+    isLoggedin() {
+        return isAuthenticated();
     }
 }

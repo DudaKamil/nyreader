@@ -3,12 +3,15 @@ import {FormBuilder, Validators} from "@angular/common";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {User} from "../../../common/user";
 import {ValidationService} from "../../../services/validation.service";
+import {CanActivate} from "@angular/router-deprecated";
+import {isAuthenticated} from "../../../services/is-authenticated";
 
 @Component({
     templateUrl: "app/components/auth/register/register-form.component.html",
     styleUrls: ["app/components/auth/register/register-form.component.css"],
     providers: [AuthenticationService]
 })
+@CanActivate(() => !isAuthenticated())
 export class RegisterComponent {
     public model: User;
     public active: boolean;

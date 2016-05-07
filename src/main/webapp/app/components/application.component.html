@@ -1,9 +1,9 @@
 <div class="sidebar">
     <ul>
         <li><a [routerLink]="['Welcome']" class="btn btn-primary btn-lg"> Home</a></li>
-        <li><a  [routerLink]="['Login']" class="btn btn-primary btn-lg"> Login</a></li>
-        <li><a  [routerLink]="['Register']" class="btn btn-primary btn-lg"> Register</a></li>
-        <li><a  (click)="logout()" class="btn btn-primary btn-lg"> Sign out</a></li>
+        <li><a *ngIf="!isLoggedin()" [routerLink]="['Login']" class="btn btn-primary btn-lg"> Login</a></li>
+        <li><a *ngIf="!isLoggedin()" [routerLink]="['Register']" class="btn btn-primary btn-lg"> Register</a></li>
+        <li><a *ngIf="isLoggedin()" (click)="logout()" class="btn btn-primary btn-lg"> Sign out</a></li>
     </ul>
 </div>
 

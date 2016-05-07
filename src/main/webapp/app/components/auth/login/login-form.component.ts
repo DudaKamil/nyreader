@@ -4,16 +4,14 @@ import {Router, CanActivate} from "@angular/router-deprecated";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {User} from "../../../common/user";
 import {ValidationService} from "../../../services/validation.service";
+import {isAuthenticated} from "../../../services/is-authenticated";
 
 @Component({
     templateUrl: "app/components/auth/login/login-form.component.html",
     styleUrls: ["app/components/auth/login/login-form.component.css"],
     providers: [AuthenticationService]
 })
-@CanActivate((a, b) => {
-    // TODO: fix
-    return true;
-})
+@CanActivate(() => !isAuthenticated())
 export class LoginComponent {
     public model: User;
     public active: boolean;
