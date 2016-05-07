@@ -1,13 +1,28 @@
 import {Injectable} from "@angular/core";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
-import {User} from "../common/user";
 import {Observable} from "rxjs";
+import {AuthHttp} from "angular2-jwt";
+import {User} from "../common/user";
 
 @Injectable()
 export class AuthenticationService {
     private _loginEndpoint: string = "/auth/login";
+    private _userEndpoint: string = "/user";
 
-    constructor(private _http: Http) {
+    constructor(private _http: Http, private _authHttp: AuthHttp) {
+    }
+
+    getUserData() {
+        this._authHttp.get(this._userEndpoint)
+            .subscribe(
+                res => {
+                    res = res.json();
+                    let username: string = res["username"];
+                    localStorage.setItem("username", username);
+                },
+                error => console.log(error),
+                () => {
+                });
     }
 
     authenticate(user: User): Observable<Response> {
@@ -24,7 +39,8 @@ export class AuthenticationService {
         response.subscribe(
             res => {
                 let token: string = res.json().token;
-                localStorage.setItem("TOKEN", token);
+                localStorage.setItem("id_token", token);
+                this.getUserData();
             }
         );
 

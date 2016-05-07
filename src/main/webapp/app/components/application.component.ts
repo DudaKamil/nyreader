@@ -3,7 +3,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {TranslatePipe, TranslateService} from "ng2-translate";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {LoginComponent} from "./auth/login/login-form.component";
-import {RegisterComponent} from "./auth/register/register.component";
+import {RegisterComponent} from "./auth/register/register-form.component";
 
 @Component({
     selector: "application",

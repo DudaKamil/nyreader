@@ -22,7 +22,7 @@ public class UserController {
 	@Autowired
 	private UserDetailsServiceImpl userDetailsService;
 
-	@RequestMapping(value = "user", method = RequestMethod.GET)
+	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public JwtUser getAuthenticatedUser(HttpServletRequest request) {
 		String token = request.getHeader(TOKEN_HEADER);
 		String username = jwtTokenUtil.getUsernameFromToken(token);

@@ -90,6 +90,9 @@ public class JwtTokenUtil implements Serializable {
 	 * @return new, refreshed token
 	 */
 	public String refreshToken(String token) {
+		if (token != null && token.startsWith("Bearer"))
+			token = token.substring(7);
+
 		String refreshedToken;
 		try {
 			final Claims claims = getClaimsFromToken(token);
@@ -102,6 +105,9 @@ public class JwtTokenUtil implements Serializable {
 	}
 
 	public String getUsernameFromToken(String token) {
+		if (token != null && token.startsWith("Bearer"))
+			token = token.substring(7);
+
 		String username;
 		try {
 			final Claims claims = getClaimsFromToken(token);

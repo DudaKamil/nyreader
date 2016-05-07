@@ -13,16 +13,19 @@ var paths = {
     workingDir: "src/main/webapp/",
     staticResources: "src/main/resources/static/",
     angular2: [
-        "./node_modules/@angular/**/*"
+        "./node_modules/@angular/**/*",
+
+        // required dependencies
+        "./node_modules/rxjs/**/*",
+        "./node_modules/angular2-jwt/**/*"
     ],
-    angular2dependencies: [
+    otherLibs: [
         "./node_modules/es6-shim/es6-shim.min.js",
         "./node_modules/zone.js/dist/zone.js",
         "./node_modules/reflect-metadata/Reflect.js",
         "./node_modules/systemjs/dist/system.src.js"
     ],
     ng2translate: ["./node_modules/ng2-translate/bundles/ng2-translate.js"],
-    rxjs: ["./node_modules/rxjs/**/*"],
     systemjsConfig: ["src/main/webapp/systemjs.config.js"],
     bootstrapCss: ["./node_modules/bootstrap/dist/css/bootstrap.css"],
     bootstrapJs: [
@@ -34,18 +37,15 @@ gulp.task("libs", () => {
     // clean libs directory
     del.sync([paths.staticResources + "libs/**"], {force: true});
 
-    // copy Angular 2, separate folder must be created
-    gulp.src(paths.angular2)
-        .pipe(gulp.dest(paths.staticResources + "libs/js/@angular"));
-
-    // copy Angular 2 dependencies
-    gulp.src(paths.angular2dependencies)
+    // copy Angular 2 and its dependencies
+    gulp.src(paths.angular2, {base: "./node_modules"})
         .pipe(gulp.dest(paths.staticResources + "libs/js"));
 
-    // copy RXJS, separate folder must be created
-    gulp.src(paths.rxjs)
-        .pipe(gulp.dest(paths.staticResources + "libs/js/rxjs"));
+    // copy other libraries
+    gulp.src(paths.otherLibs)
+        .pipe(gulp.dest(paths.staticResources + "libs/js"));
 
+    // TODO: new version for Angular RC
     // copy Angular 2 translate library, separate folder must be created
     gulp.src(paths.ng2translate)
         .pipe(gulp.dest(paths.staticResources + "libs/js/ng2-translate"));

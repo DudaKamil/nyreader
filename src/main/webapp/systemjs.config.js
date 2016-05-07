@@ -4,13 +4,15 @@
         'app':                        'app', // 'dist',
         'rxjs':                       'libs/js/rxjs',
         '@angular':                   'libs/js/@angular',
-        'ng2-translate':              'libs/js/ng2-translate'
+        'ng2-translate':              'libs/js/ng2-translate',
+        'angular2-jwt':               'libs/js/angular2-jwt'
     };
 
     // packages tells the System loader how to load when no filename and/or no extension
     var packages = {
-        'app':                        { main: 'main.js',  defaultExtension: 'js' },
-        'rxjs':                       { defaultExtension: 'js' }
+        'app':                        { main: 'main.js',     defaultExtension: 'js' },
+        'rxjs':                       { defaultExtension: 'js' },
+        'angular2-jwt':               {main: 'angular2-jwt', defaultExtension: 'js' }
     };
 
     var packageNames = [

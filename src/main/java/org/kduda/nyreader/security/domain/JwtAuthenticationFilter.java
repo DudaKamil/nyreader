@@ -18,12 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-	@Value("${jwt.token.header}")
-	private String TOKEN_HEADER;
-
 	@Autowired
 	UserDetailsServiceImpl userDetailsServiceImpl;
-
+	@Value("${jwt.token.header}")
+	private String TOKEN_HEADER;
 	@Autowired
 	private JwtTokenUtil jwtTokenUtil;
 
@@ -33,6 +31,10 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String authToken = httpRequest.getHeader(this.TOKEN_HEADER);
+
+		if (authToken != null && authToken.startsWith("Bearer"))
+			authToken = authToken.substring(7);
+
 		String username = jwtTokenUtil.getUsernameFromToken(authToken);
 
 		if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
