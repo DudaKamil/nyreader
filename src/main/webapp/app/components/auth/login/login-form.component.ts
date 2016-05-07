@@ -1,6 +1,8 @@
 import {Component} from "@angular/core";
+import {Validators, FormBuilder} from "@angular/common";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {User} from "../../../common/user";
+import {ValidationService} from "../../../services/validation.service";
 
 @Component({
     templateUrl: "app/components/auth/login/login-form.component.html",
@@ -13,8 +15,15 @@ export class LoginComponent {
     public active: boolean;
     public msg: any;
     public error: any;
+    public loginForm: any;
 
-    constructor(private _authenticationService: AuthenticationService) {
+    constructor(private _authenticationService: AuthenticationService,
+                private _formBuilder: FormBuilder) {
+        this.loginForm = _formBuilder.group({
+            username: ["", Validators.compose([Validators.required, ValidationService.emailValidator])],
+            password: ["", Validators.required]
+        });
+
         this._submitted = false;
         this.active = true;
         this.model = new User("", "");

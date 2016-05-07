@@ -10,7 +10,7 @@
                                [(ngModel)]="model.username" ngControl="username" #username="ngForm">
                     </div>
                     <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-                        <b>Valid email</b> address is required!
+                        Please provide a valid email address!
                     </div>
 
                     <div class="form-group">
@@ -19,7 +19,7 @@
                                [(ngModel)]="model.password" ngControl="password" #password="ngForm">
                     </div>
                     <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-                        Your password is required and needs to be at least 6 characters.
+                        Password needs to be at least 6 characters!
                     </div>
 
                     <button type="submit" class="btn btn-default" [disabled]="!registerForm.valid">Sign Up</button>

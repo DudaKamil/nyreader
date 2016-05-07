@@ -3,23 +3,23 @@
         <div class="col-sm-6 col-md-6 col-md-offset-3">
             <div class="well login-wall">
                 <h1>Sign In</h1>
-                <form novalidate (submit)="onSubmit()" *ngIf="active" #loginForm="ngForm">
+                <form [ngFormModel]="loginForm" novalidate (submit)="onSubmit()" *ngIf="active">
                     <div class="form-group">
                         <label for="username">Email</label>
                         <input id="username" type="email" class="form-control" placeholder="email"
-                               [(ngModel)]="model.username" ngControl="username" #username="ngForm" required>
+                               [(ngModel)]="model.username" ngControl="username" #username="ngForm" >
                     </div>
                     <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-                        <b>Email address</b> is required!
+                        Please provide a valid email address!
                     </div>
 
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input id="password" type="password" class="form-control" placeholder="password"
-                               [(ngModel)]="model.password" ngControl="password" #password="ngForm" required>
+                               [(ngModel)]="model.password" ngControl="password" #password="ngForm" >
                     </div>
                     <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-                        <b>Password</b> is required!
+                        Password is required!
                     </div>
 
                     <div class="form-group">
@@ -30,7 +30,7 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-default" [disabled]="!loginForm.form.valid">Sign In</button>
+                    <button type="submit" class="btn btn-default" [disabled]="!loginForm.valid">Sign In</button>
                 </form>
             </div>
         </div>
