@@ -8,6 +8,7 @@ import {User} from "../common/user";
 export class AuthenticationService {
     private _loginEndpoint: string = "/auth/login";
     private _userEndpoint: string = "/user";
+    public isAuthenticated: boolean = false;
 
     constructor(private _http: Http, private _authHttp: AuthHttp) {
     }
@@ -15,13 +16,9 @@ export class AuthenticationService {
     getUserData() {
         this._authHttp.get(this._userEndpoint)
             .subscribe(
-                res => {
-                    res = res.json();
-                    let username: string = res["username"];
-                    localStorage.setItem("username", username);
-                },
-                error => console.log(error),
-                () => {
+                response => {
+                    response = response.json();
+                    this.saveUserData(response);
                 }
             );
     }
@@ -38,13 +35,32 @@ export class AuthenticationService {
         let response: Observable<Response> = this._http.post(this._loginEndpoint, userData, options);
 
         response.subscribe(
-            res => {
-                let token: string = res.json().token;
+            response => {
+                let token: string = response.json().token;
                 localStorage.setItem("id_token", token);
+                this.isAuthenticated = true;
                 this.getUserData();
             }
         );
-
         return response;
+    }
+
+    logout() {
+        this.removeUserData();
+        this.isAuthenticated = false;
+    }
+
+    private saveUserData(userData: any) {
+        let userID = userData.id;
+        let user = userData.username;
+
+        localStorage.setItem("userID", userID);
+        localStorage.setItem("user", user);
+    }
+
+    private removeUserData() {
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("userID");
+        localStorage.removeItem("user");
     }
 }

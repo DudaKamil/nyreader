@@ -23,7 +23,6 @@ public class JwtUser implements UserDetails {
 		return null;
 	}
 
-	@JsonIgnore
 	public String getId() {
 		return this.id;
 	}

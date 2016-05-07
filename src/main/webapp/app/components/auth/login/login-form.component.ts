@@ -1,6 +1,6 @@
 import {Component} from "@angular/core";
 import {Validators, FormBuilder} from "@angular/common";
-import {Router} from "@angular/router-deprecated";
+import {Router, CanActivate} from "@angular/router-deprecated";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {User} from "../../../common/user";
 import {ValidationService} from "../../../services/validation.service";
@@ -10,12 +10,17 @@ import {ValidationService} from "../../../services/validation.service";
     styleUrls: ["app/components/auth/login/login-form.component.css"],
     providers: [AuthenticationService]
 })
+@CanActivate((a, b) => {
+    // TODO: fix
+    return true;
+})
 export class LoginComponent {
     public model: User;
     public active: boolean;
     public msg: any;
     public error: any;
     public loginForm: any;
+    public rememberMe: boolean = true;
 
     constructor(private _authenticationService: AuthenticationService,
                 private _formBuilder: FormBuilder,
@@ -28,12 +33,23 @@ export class LoginComponent {
         this.active = true;
         // TODO: debug - remove credentials
         this.model = new User("user@example.com", "user");
+        // this.model = new User("", "");
+        let savedUsername: string = localStorage.getItem("rememberMeUsername");
+        if (savedUsername) {
+            this.model.username = savedUsername;
+        }
     }
 
     onSubmit() {
         this._authenticationService.authenticate(this.model)
             .subscribe(
                 msg => {
+                    if (this.rememberMe) {
+                        localStorage.setItem("rememberMeUsername", this.model.username);
+                    } else {
+                        localStorage.removeItem("rememberMeUsername");
+                    }
+
                     this._router.navigate(["Welcome"]);
                     this.model = new User("", "");
                     this.error = "";

@@ -4,12 +4,14 @@ import {TranslatePipe, TranslateService} from "ng2-translate";
 import {WelcomeComponent} from "./welcome/welcome.component";
 import {LoginComponent} from "./auth/login/login-form.component";
 import {RegisterComponent} from "./auth/register/register-form.component";
+import {AuthenticationService} from "../services/authentication.service";
 
 @Component({
     selector: "application",
     templateUrl: "app/components/application.component.html",
     styleUrls: ["app/components/application.component.css"],
     directives: [ROUTER_DIRECTIVES],
+    providers: [AuthenticationService],
     pipes: []
     // pipes: [TranslatePipe]
 })
@@ -20,6 +22,12 @@ import {RegisterComponent} from "./auth/register/register-form.component";
     {path: "/**", redirectTo: ["Welcome"]}
 ])
 export class ApplicationComponent {
+    public isAuthenticated: boolean;
+
+    constructor(private _authenticationService: AuthenticationService) {
+        this.isAuthenticated = _authenticationService.isAuthenticated;
+    }
+
     // TODO: ng2-translate for angular 2 rc
     // constructor(private translate: TranslateService) {
     //     this.translate = translate;
@@ -38,7 +46,6 @@ export class ApplicationComponent {
     // }
 
     logout() {
-        localStorage.removeItem("id_token");
-        localStorage.removeItem("username");
+        this._authenticationService.logout();
     }
 }
