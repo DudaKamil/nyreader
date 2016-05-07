@@ -7,6 +7,7 @@ import {User} from "../common/user";
 @Injectable()
 export class AuthenticationService {
     private _loginEndpoint: string = "/auth/login";
+    private _registerEndpoint: string = "/auth/register";
     private _userEndpoint: string = "/user";
     public isAuthenticated: boolean = false;
 
@@ -40,6 +41,25 @@ export class AuthenticationService {
                 localStorage.setItem("id_token", token);
                 this.isAuthenticated = true;
                 this.getUserData();
+            }
+        );
+        return response;
+    }
+
+    register(user: User): Observable<Response> {
+        let userData: string = JSON.stringify(user);
+        let headers = new Headers({
+            "Content-Type": "application/json; charset=utf-8",
+            "dataType": "json"
+        });
+        let options = new RequestOptions({headers: headers});
+
+        // TODO: map method does not work
+        let response: Observable<Response> = this._http.post(this._registerEndpoint, userData, options);
+
+        response.subscribe(
+            response => {
+                this.authenticate(user);
             }
         );
         return response;

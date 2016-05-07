@@ -20,7 +20,7 @@
                     </div>
                     <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
                         Password is required!
-                        <div [hidden]="!error">
+                        <div *ngIf="error">
                             {{error}}
                         </div>
                     </div>

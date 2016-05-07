@@ -1,5 +1,4 @@
 export class ValidationService {
-
     static getValidatorErrorMessage(code: string) {
         let config = {
             "required": "Required",
