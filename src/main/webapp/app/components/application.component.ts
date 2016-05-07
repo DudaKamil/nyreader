@@ -36,4 +36,9 @@ export class ApplicationComponent {
     // changeLanguate(language: string) {
     //     this.translate.use(language);
     // }
+
+    logout() {
+        localStorage.removeItem("id_token");
+        localStorage.removeItem("username");
+    }
 }

@@ -10,7 +10,6 @@ import {ValidationService} from "../../../services/validation.service";
     providers: [AuthenticationService]
 })
 export class RegisterComponent {
-    private _submitted: boolean;
     public model: User;
     public active: boolean;
     public msg: any;
@@ -24,7 +23,6 @@ export class RegisterComponent {
             password: ["", Validators.compose([Validators.required, Validators.minLength(6)])]
         });
 
-        this._submitted = false;
         this.active = true;
         this.model = new User("", "");
     }
@@ -36,7 +34,6 @@ export class RegisterComponent {
         // TODO: Workaround until NgForm has a reset method (#6822)
         setTimeout(() => this.active = true, 0);
 
-        this._submitted = true;
         this.model = new User("", "");
         this.active = false;
     }

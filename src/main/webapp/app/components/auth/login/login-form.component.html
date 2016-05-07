@@ -7,7 +7,7 @@
                     <div class="form-group">
                         <label for="username">Email</label>
                         <input id="username" type="email" class="form-control" placeholder="email"
-                               [(ngModel)]="model.username" ngControl="username" #username="ngForm" >
+                               [(ngModel)]="model.username" ngControl="username" #username="ngForm">
                     </div>
                     <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
                         Please provide a valid email address!
@@ -16,10 +16,13 @@
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input id="password" type="password" class="form-control" placeholder="password"
-                               [(ngModel)]="model.password" ngControl="password" #password="ngForm" >
+                               [(ngModel)]="model.password" ngControl="password" #password="ngForm">
                     </div>
                     <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
                         Password is required!
+                        <div [hidden]="!error">
+                            {{error}}
+                        </div>
                     </div>
 
                     <div class="form-group">

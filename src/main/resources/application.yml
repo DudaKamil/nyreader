@@ -9,7 +9,7 @@ spring:
 logging:
   level:
     org.springframework:
-      security: debug
+      security: info
 
 jwt:
   token:

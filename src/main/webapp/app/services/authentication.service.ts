@@ -22,7 +22,8 @@ export class AuthenticationService {
                 },
                 error => console.log(error),
                 () => {
-                });
+                }
+            );
     }
 
     authenticate(user: User): Observable<Response> {
