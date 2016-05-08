@@ -10,11 +10,9 @@ import java.util.List;
 public class User {
 	@Id
 	private String id;
-
 	private String username;
 	private String password;
 	private List<Feed> feeds;
-
 
 	public String getId() {
 		return id;
@@ -47,7 +45,6 @@ public class User {
 	public void setFeeds(List<Feed> feeds) {
 		this.feeds = feeds;
 	}
-
 
 	@Override
 	public String toString() {

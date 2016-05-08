@@ -1,10 +1,17 @@
 package org.kduda.nyreader;
 
+import org.kduda.nyreader.common.feed.Feed;
+import org.kduda.nyreader.common.user.User;
 import org.kduda.nyreader.common.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @SpringBootApplication
 public class NyReaderApplication implements CommandLineRunner {
@@ -44,5 +51,7 @@ public class NyReaderApplication implements CommandLineRunner {
 //
 //		userRepository.save(user);
 //		userRepository.save(admin);
+//
+//		System.out.println(userRepository.findByUsername("user@example.com"));
 	}
 }
