@@ -6,6 +6,7 @@ import {LoginComponent} from "./auth/login/login-form.component";
 import {RegisterComponent} from "./auth/register/register-form.component";
 import {AuthenticationService} from "../services/authentication.service";
 import {isAuthenticated} from "../services/is-authenticated";
+import {UserHomeComponent} from "./userHome/user-home.component";
 
 @Component({
     selector: "application",
@@ -19,7 +20,8 @@ import {isAuthenticated} from "../services/is-authenticated";
 @RouteConfig([
     {path: "/welcome", name: "Welcome", component: WelcomeComponent, useAsDefault: true},
     {path: "/login", name: "Login", component: LoginComponent},
-    {path: "/register", name: "Register", component: RegisterComponent}
+    {path: "/register", name: "Register", component: RegisterComponent},
+    {path: "/my", name: "Home", component: UserHomeComponent}
 ])
 export class ApplicationComponent {
     constructor(private _authenticationService: AuthenticationService,

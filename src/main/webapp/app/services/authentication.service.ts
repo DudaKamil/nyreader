@@ -41,6 +41,8 @@ export class AuthenticationService {
                 localStorage.setItem("id_token", token);
                 this.isAuthenticated = true;
                 this.getUserData();
+                
+                
             }
         );
         return response;
@@ -55,14 +57,7 @@ export class AuthenticationService {
         let options = new RequestOptions({headers: headers});
 
         // TODO: map method does not work
-        let response: Observable<Response> = this._http.post(this._registerEndpoint, userData, options);
-
-        response.subscribe(
-            response => {
-                this.authenticate(user);
-            }
-        );
-        return response;
+        return this._http.post(this._registerEndpoint, userData, options);
     }
 
     logout() {

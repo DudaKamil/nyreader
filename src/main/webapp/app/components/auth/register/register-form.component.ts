@@ -20,6 +20,7 @@ export class RegisterComponent {
     public msg: any;
     public error: any;
     public passwordError: string;
+    public confirmPassword: string;
     public registerForm: any;
 
     constructor(private _authenticationService: AuthenticationService,
@@ -34,18 +35,23 @@ export class RegisterComponent {
 
         this.active = true;
         this.model = new User("", "");
+        this.confirmPassword = "";
     }
 
     onSubmit() {
         this._authenticationService.register(this.model)
             .subscribe(
                 msg => {
-                    this._router.navigate(["Welcome"]);
-                    this.model = new User("", "");
-                    this.error = "";
+                    this._authenticationService.authenticate(this.model)
+                        .subscribe(msg => {
+                            this._router.navigate(["Home"]);
+                            this.model = new User("", "");
+                            this.error = "";
+                        });
                 },
                 error => {
                     this.model.password = "";
+                    this.confirmPassword = "";
 
                     // Reset the form with a new hero AND restore 'pristine' class state
                     // by toggling 'active' flag which causes the form
