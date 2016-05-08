@@ -11,7 +11,8 @@
         <form class="feedForm" novalidate (submit)="onSubmit()" *ngIf="active">
             <div class="form-group">
                 <label for="feedAddress">New feed</label>
-                <input id="feedAddress" class="form-control" required type="url"  [(ngModel)]="newFeed" ngControl="feedInput" #feedInput="ngForm">
+                <input id="feedAddress" class="form-control" required type="url" [(ngModel)]="newUrl"
+                       ngControl="feedInput" #feedInput="ngForm">
             </div>
 
             <div [hidden]="feedInput.valid || feedInput.pristine" class="alert alert-danger">
@@ -26,7 +27,7 @@
 
     <div>
         <ul>
-            <li *ngFor="let feed of feeds">{{feed}}</li>
+            <li *ngFor="let feed of feeds">{{feed.url}}</li>
         </ul>
     </div>
 </div>

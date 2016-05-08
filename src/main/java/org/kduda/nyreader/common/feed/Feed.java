@@ -7,8 +7,7 @@ import java.util.List;
 @Document
 public class Feed {
 	private String url;
-	private List<News> newsList;
-
+	private List<News> news;
 
 	public String getUrl() {
 		return url;
@@ -18,12 +17,12 @@ public class Feed {
 		this.url = url;
 	}
 
-	public List<News> getNewsList() {
-		return newsList;
+	public List<News> getNews() {
+		return news;
 	}
 
-	public void setNewsList(List<News> newsList) {
-		this.newsList = newsList;
+	public void setNews(List<News> news) {
+		this.news = news;
 	}
 
 	@Override

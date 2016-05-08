@@ -10,8 +10,15 @@ export class AuthenticationService {
     private _registerEndpoint: string = "/auth/register";
     private _userEndpoint: string = "/user";
     public isAuthenticated: boolean = false;
+    private _options: RequestOptions;
+
 
     constructor(private _http: Http, private _authHttp: AuthHttp) {
+        let headers: Headers = new Headers({
+            "Content-Type": "application/json; charset=utf-8",
+            "dataType": "json"
+        });
+        this._options = new RequestOptions({headers: headers});
     }
 
     getUserData() {
@@ -26,14 +33,8 @@ export class AuthenticationService {
 
     authenticate(user: User): Observable<Response> {
         let userData: string = JSON.stringify(user);
-        let headers = new Headers({
-            "Content-Type": "application/json; charset=utf-8",
-            "dataType": "json"
-        });
-        let options = new RequestOptions({headers: headers});
 
-        // TODO: map method does not work
-        let response: Observable<Response> = this._http.post(this._loginEndpoint, userData, options);
+        let response: Observable<Response> = this._http.post(this._loginEndpoint, userData, this._options);
 
         response.subscribe(
             response => {
@@ -48,14 +49,8 @@ export class AuthenticationService {
 
     register(user: User): Observable<Response> {
         let userData: string = JSON.stringify(user);
-        let headers = new Headers({
-            "Content-Type": "application/json; charset=utf-8",
-            "dataType": "json"
-        });
-        let options = new RequestOptions({headers: headers});
 
-        // TODO: map method does not work
-        return this._http.post(this._registerEndpoint, userData, options);
+        return this._http.post(this._registerEndpoint, userData, this._options);
     }
 
     logout() {

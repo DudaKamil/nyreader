@@ -31,23 +31,24 @@ public class NyReaderApplication implements CommandLineRunner {
 //		userRepository.deleteAll();
 //
 //		List<Feed> feeds = new ArrayList<>();
-//		Feed feed = new Feed();
-//		feed.setUrl("http://feeds.bbci.co.uk/news/northern_ireland/rss.xml?edition=uk");
 //		Feed feed1 = new Feed();
-//		feed1.setUrl("http://rss.gazeta.pl/pub/rss/kielce.xml");
+//		feed1.setUrl("http://feeds.bbci.co.uk/news/northern_ireland/rss.xml?edition=uk");
+//		Feed feed2 = new Feed();
+//		feed2.setUrl("http://rss.gazeta.pl/pub/rss/kielce.xml");
 //
-//		feeds.add(feed);
 //		feeds.add(feed1);
+//		feeds.add(feed2);
+//
+//
+//		User admin = new User();
+//		admin.setUsername("admin@example.com");
+//		admin.setPassword(encoder.encode("admin"));
+////		admin.setFeeds(feeds);
 //
 //		User user = new User();
 //		user.setUsername("user@example.com");
 //		user.setPassword(encoder.encode("user"));
 //		user.setFeeds(feeds);
-//
-//		User admin = new User();
-//		admin.setUsername("admin@example.com");
-//		admin.setPassword(encoder.encode("admin"));
-//		admin.setFeeds(feeds);
 //
 //		userRepository.save(user);
 //		userRepository.save(admin);
