@@ -41,8 +41,6 @@ export class AuthenticationService {
                 localStorage.setItem("id_token", token);
                 this.isAuthenticated = true;
                 this.getUserData();
-                
-                
             }
         );
         return response;
