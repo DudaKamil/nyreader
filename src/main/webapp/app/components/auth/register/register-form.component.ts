@@ -44,9 +44,9 @@ export class RegisterComponent {
                 msg => {
                     this._authenticationService.authenticate(this.model)
                         .subscribe(msg => {
-                            this._router.navigate(["Home"]);
                             this.model = new User("", "");
                             this.error = "";
+                            this._router.navigate(["Home"]);
                         });
                 },
                 error => {

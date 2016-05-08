@@ -48,9 +48,9 @@ export class LoginComponent {
                         localStorage.removeItem("rememberMeUsername");
                     }
 
-                    this._router.navigate(["Home"]);
                     this.model = new User("", "");
                     this.error = "";
+                    this._router.navigate(["Home"]);
                 },
                 error => {
                     this.model.password = "";
