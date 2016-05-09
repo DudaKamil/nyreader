@@ -43,6 +43,7 @@ dependencies {
 	compile('org.springframework.mobile:spring-mobile-device:1.1.5.RELEASE')
 	compile('org.springframework.boot:spring-boot-configuration-processor')
 	compile('org.springframework.boot:spring-boot-starter-actuator')
+	compile('com.rometools:rome:1.6.0')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 

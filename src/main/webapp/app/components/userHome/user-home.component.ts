@@ -28,7 +28,9 @@ export class UserHomeComponent implements OnInit {
 
         this._feedService.postNewUrl(this.newUrl)
             .subscribe(
-                res => this.getAllFeeds()
+                res => {
+                    this.getAllFeeds();
+                }
             );
 
         this.newUrl = "";
@@ -44,11 +46,19 @@ export class UserHomeComponent implements OnInit {
     }
 
     private getAllFeeds() {
+        console.log("getAllFeeds()");
         this._feedService.getUserFeeds()
             .subscribe(
                 res => {
                     try {
-                        this.feeds = res.json();
+                        let json = res.json();
+                        if (json !== "") {
+                            this.feeds = json;
+                        } else {
+                            console.log("empty");
+                        }
+                        // TODO: debug
+                        console.log(json);
                     } catch (error) {
                     }
                 }

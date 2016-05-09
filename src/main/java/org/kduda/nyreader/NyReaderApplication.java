@@ -1,5 +1,6 @@
 package org.kduda.nyreader;
 
+import org.kduda.nyreader.application.FeedReaderService;
 import org.kduda.nyreader.common.feed.Feed;
 import org.kduda.nyreader.common.user.User;
 import org.kduda.nyreader.common.user.UserRepository;
@@ -32,7 +33,7 @@ public class NyReaderApplication implements CommandLineRunner {
 //
 //		List<Feed> feeds = new ArrayList<>();
 //		Feed feed1 = new Feed();
-//		feed1.setUrl("http://feeds.bbci.co.uk/news/northern_ireland/rss.xml?edition=uk");
+//		feed1.setUrl("http://feeds.bbci.co.uk/aNews/northern_ireland/rss.xml?edition=uk");
 //		Feed feed2 = new Feed();
 //		feed2.setUrl("http://rss.gazeta.pl/pub/rss/kielce.xml");
 //
@@ -54,5 +55,6 @@ public class NyReaderApplication implements CommandLineRunner {
 //		userRepository.save(admin);
 //
 //		System.out.println(userRepository.findByUsername("user@example.com"));
+
 	}
 }

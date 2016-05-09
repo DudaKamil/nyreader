@@ -30,7 +30,7 @@ export class LoginComponent {
 
         this.active = true;
         // TODO: debug - remove credentials
-        this.model = new User("user@example.com", "user");
+        this.model = new User("user@example.com", "useruser");
         // this.model = new User("", "");
         let savedUsername: string = localStorage.getItem("rememberMeUsername");
         if (savedUsername) {
