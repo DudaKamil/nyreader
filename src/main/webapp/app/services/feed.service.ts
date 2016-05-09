@@ -24,4 +24,8 @@ export class FeedService {
     postNewUrl(newUrl: string) {
         return this._authHttp.post(this._feedsEndpoint, newUrl, this._options);
     }
+
+    deleteFeed(feed: string) {
+        return this._authHttp.post(this._feedsEndpoint + "/delete", feed, this._options);
+    }
 }

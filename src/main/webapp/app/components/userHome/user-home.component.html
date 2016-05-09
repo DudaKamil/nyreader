@@ -27,7 +27,10 @@
 
     <div>
         <ul>
-            <li *ngFor="let feed of feeds">{{feed.url}}</li>
+            <li *ngFor="let feed of feeds">
+                {{feed.url}}
+                <button class="btn btn-danger" (click)="deleteFeed(feed.url)">Delete</button>
+            </li>
         </ul>
     </div>
 </div>

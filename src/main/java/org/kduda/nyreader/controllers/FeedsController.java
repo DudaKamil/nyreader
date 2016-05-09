@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class FeedsController {
@@ -41,6 +42,19 @@ public class FeedsController {
 		user.getFeeds().add(newFeed);
 		userRepository.save(user);
 		// TODO: feed url check
+		return ResponseEntity.ok("success");
+	}
+
+	@RequestMapping(value = "/feed/delete", method = RequestMethod.POST)
+	public ResponseEntity<?> deleteFeed(@RequestBody String url, HttpServletRequest request) {
+		String token = request.getHeader(TOKEN_HEADER);
+		String username = jwtTokenUtil.getUsernameFromToken(token);
+		User user = userRepository.findByUsername(username);
+		List<Feed> feeds = user.getFeeds();
+		feeds.removeIf(feed -> feed.getUrl().equals(url));
+
+		user.setFeeds(feeds);
+		userRepository.save(user);
 		return ResponseEntity.ok("success");
 	}
 }

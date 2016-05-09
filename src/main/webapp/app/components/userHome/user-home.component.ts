@@ -36,6 +36,13 @@ export class UserHomeComponent implements OnInit {
         setTimeout(() => this.active = true, 0);
     }
 
+    deleteFeed(feed: string) {
+        this._feedService.deleteFeed(feed)
+            .subscribe(
+                res => this.getAllFeeds()
+            );
+    }
+
     private getAllFeeds() {
         this._feedService.getUserFeeds()
             .subscribe(
