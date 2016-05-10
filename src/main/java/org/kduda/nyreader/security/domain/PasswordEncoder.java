@@ -5,6 +5,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class PasswordEncoder extends BCryptPasswordEncoder {
-	public PasswordEncoder() {
-	}
+    public PasswordEncoder() {
+    }
 }

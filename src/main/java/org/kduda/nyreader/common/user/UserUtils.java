@@ -14,26 +14,26 @@ import java.util.List;
 
 @Component
 public class UserUtils {
-	@Value("${jwt.token.header}")
-	private String TOKEN_HEADER;
+    @Value("${jwt.token.header}")
+    private String TOKEN_HEADER;
 
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	public User getCurrentUser(HttpServletRequest request) {
-		String token = request.getHeader(TOKEN_HEADER);
-		String username = jwtTokenUtil.getUsernameFromToken(token);
-		return userRepository.findByUsername(username);
-	}
+    public User getCurrentUser(HttpServletRequest request) {
+        String token = request.getHeader(TOKEN_HEADER);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        return userRepository.findByUsername(username);
+    }
 
-	public void addFeed(User user, SyndFeed syndFeed, String feedUrl) {
-		List<Feed> feeds = user.getFeeds();
-		if (feeds == null)
-			feeds = new ArrayList<>();
-		feeds.add(FeedFactory.create(syndFeed, feedUrl));
-		user.setFeeds(feeds);
-	}
+    public void addFeed(User user, SyndFeed syndFeed, String feedUrl) {
+        List<Feed> feeds = user.getFeeds();
+        if (feeds == null)
+            feeds = new ArrayList<>();
+        feeds.add(FeedFactory.create(syndFeed, feedUrl));
+        user.setFeeds(feeds);
+    }
 }

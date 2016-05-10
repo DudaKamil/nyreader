@@ -13,20 +13,20 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 public class UserController {
-	@Value("${jwt.token.header}")
-	private String TOKEN_HEADER;
+    @Value("${jwt.token.header}")
+    private String TOKEN_HEADER;
 
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
-	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
-	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public JwtUser getAuthenticatedUser(HttpServletRequest request) {
-		String token = request.getHeader(TOKEN_HEADER);
-		String username = jwtTokenUtil.getUsernameFromToken(token);
-		return (JwtUser) userDetailsService.loadUserByUsername(username);
-	}
+    @RequestMapping(value = "/user", method = RequestMethod.GET)
+    public JwtUser getAuthenticatedUser(HttpServletRequest request) {
+        String token = request.getHeader(TOKEN_HEADER);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        return (JwtUser) userDetailsService.loadUserByUsername(username);
+    }
 
 }

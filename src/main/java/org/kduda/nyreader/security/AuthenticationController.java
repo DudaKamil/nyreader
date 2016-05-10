@@ -31,73 +31,73 @@ import java.security.Principal;
 
 @RestController
 public class AuthenticationController {
-	@Value("${jwt.token.header}")
-	private String TOKEN_HEADER;
+    @Value("${jwt.token.header}")
+    private String TOKEN_HEADER;
 
-	@Autowired
-	private AuthenticationManager authenticationManager;
+    @Autowired
+    private AuthenticationManager authenticationManager;
 
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
 
-	@Autowired
-	private UserDetailsServiceImpl userDetailsService;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    private UserRepository userRepository;
 
-	@Autowired
-	private BCryptPasswordEncoder passwordEncoder;
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
 
-	@RequestMapping(value = "/auth/login", method = RequestMethod.POST)
-	public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device)
-		throws AuthenticationException {
+    @RequestMapping(value = "/auth/login", method = RequestMethod.POST)
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody JwtAuthenticationRequest authenticationRequest, Device device)
+        throws AuthenticationException {
 
-		UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
-			authenticationRequest.getUsername(),
-			authenticationRequest.getPassword()
-		);
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
+            authenticationRequest.getUsername(),
+            authenticationRequest.getPassword()
+        );
 
-		final Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+        final Authentication authentication = authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
-		SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-		final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
-		final String token = jwtTokenUtil.generateToken(userDetails, device);
+        final UserDetails userDetails = userDetailsService.loadUserByUsername(authenticationRequest.getUsername());
+        final String token = jwtTokenUtil.generateToken(userDetails, device);
 
-		return ResponseEntity.ok(new JwtAuthenticationResponse(token));
-	}
+        return ResponseEntity.ok(new JwtAuthenticationResponse(token));
+    }
 
-	@RequestMapping(value = "/auth/register", method = RequestMethod.POST)
-	public ResponseEntity<?> register(@RequestBody JwtAuthenticationRequest authenticationRequest) {
-		String username = authenticationRequest.getUsername();
-		String password = authenticationRequest.getPassword();
+    @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
+    public ResponseEntity<?> register(@RequestBody JwtAuthenticationRequest authenticationRequest) {
+        String username = authenticationRequest.getUsername();
+        String password = authenticationRequest.getPassword();
 
-		try {
-			userDetailsService.loadUserByUsername(username);
-			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
-		} catch (UsernameNotFoundException ex) {
-			User user = new User();
-			user.setUsername(username);
-			user.setPassword(this.passwordEncoder.encode(password));
-			userRepository.save(user);
-		}
-		return ResponseEntity.ok("success");
-	}
+        try {
+            userDetailsService.loadUserByUsername(username);
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body(null);
+        } catch (UsernameNotFoundException ex) {
+            User user = new User();
+            user.setUsername(username);
+            user.setPassword(this.passwordEncoder.encode(password));
+            userRepository.save(user);
+        }
+        return ResponseEntity.ok("success");
+    }
 
-	// TODO: check method in front-end
-	@RequestMapping(value = "/auth/refresh", method = RequestMethod.GET)
-	public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
-		String token = request.getHeader(TOKEN_HEADER);
-		String username = jwtTokenUtil.getUsernameFromToken(token);
-		JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
+    // TODO: check method in front-end
+    @RequestMapping(value = "/auth/refresh", method = RequestMethod.GET)
+    public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
+        String token = request.getHeader(TOKEN_HEADER);
+        String username = jwtTokenUtil.getUsernameFromToken(token);
+        JwtUser user = (JwtUser) userDetailsService.loadUserByUsername(username);
 
-		if (jwtTokenUtil.canTokenBeRefreshed(token)) {
-			String refreshedToken = jwtTokenUtil.refreshToken(token);
-			return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
-		} else {
-			return ResponseEntity.badRequest().body(null);
-		}
-	}
+        if (jwtTokenUtil.canTokenBeRefreshed(token)) {
+            String refreshedToken = jwtTokenUtil.refreshToken(token);
+            return ResponseEntity.ok(new JwtAuthenticationResponse(refreshedToken));
+        } else {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
 
 }

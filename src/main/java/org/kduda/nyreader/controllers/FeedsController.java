@@ -21,50 +21,50 @@ import java.util.List;
 
 @RestController
 public class FeedsController {
-	@Autowired
-	FeedReaderService feedReaderService;
-	@Autowired
-	UserUtils userUtils;
-	@Value("${jwt.token.header}")
-	private String TOKEN_HEADER;
-	@Autowired
-	private JwtTokenUtil jwtTokenUtil;
-	@Autowired
-	private UserRepository userRepository;
+    @Autowired
+    FeedReaderService feedReaderService;
+    @Autowired
+    UserUtils userUtils;
+    @Value("${jwt.token.header}")
+    private String TOKEN_HEADER;
+    @Autowired
+    private JwtTokenUtil jwtTokenUtil;
+    @Autowired
+    private UserRepository userRepository;
 
-	@RequestMapping(value = "/feed", method = RequestMethod.GET)
-	public List<Feed> getUserFeeds(HttpServletRequest request) {
-		User user = this.userUtils.getCurrentUser(request);
-		return user.getFeeds();
-	}
+    @RequestMapping(value = "/feed", method = RequestMethod.GET)
+    public List<Feed> getUserFeeds(HttpServletRequest request) {
+        User user = this.userUtils.getCurrentUser(request);
+        return user.getFeeds();
+    }
 
-	@RequestMapping(value = "/feed", method = RequestMethod.POST)
-	public ResponseEntity<?> addFeed(@RequestBody String feedUrl, HttpServletRequest request) {
-		boolean isValid = this.feedReaderService.checkValidity(feedUrl);
+    @RequestMapping(value = "/feed", method = RequestMethod.POST)
+    public ResponseEntity<?> addFeed(@RequestBody String feedUrl, HttpServletRequest request) {
+        boolean isValid = this.feedReaderService.checkValidity(feedUrl);
 
-		if (isValid) {
-			User user = this.userUtils.getCurrentUser(request);
-			SyndFeed syndFeed = this.feedReaderService.getCurrentFeed();
-			// TODO: check if feed already exists
-			this.userUtils.addFeed(user, syndFeed, feedUrl);
+        if (isValid) {
+            User user = this.userUtils.getCurrentUser(request);
+            SyndFeed syndFeed = this.feedReaderService.getCurrentFeed();
+            // TODO: check if feed already exists
+            this.userUtils.addFeed(user, syndFeed, feedUrl);
 
-			userRepository.save(user);
-		} else {
-			return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("error");
-		}
+            userRepository.save(user);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("error");
+        }
 
-		return ResponseEntity.ok("success");
-	}
+        return ResponseEntity.ok("success");
+    }
 
-	@RequestMapping(value = "/feed/delete", method = RequestMethod.POST)
-	public ResponseEntity<?> deleteFeed(@RequestBody String url, HttpServletRequest request) {
-		User user = this.userUtils.getCurrentUser(request);
-		List<Feed> feeds = user.getFeeds();
+    @RequestMapping(value = "/feed/delete", method = RequestMethod.POST)
+    public ResponseEntity<?> deleteFeed(@RequestBody String url, HttpServletRequest request) {
+        User user = this.userUtils.getCurrentUser(request);
+        List<Feed> feeds = user.getFeeds();
 
-		feeds.removeIf(feed -> feed.getUrl().equals(url));
+        feeds.removeIf(feed -> feed.getUrl().equals(url));
 
-		user.setFeeds(feeds);
-		userRepository.save(user);
-		return ResponseEntity.ok("success");
-	}
+        user.setFeeds(feeds);
+        userRepository.save(user);
+        return ResponseEntity.ok("success");
+    }
 }

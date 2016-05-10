@@ -16,17 +16,17 @@ import java.util.List;
 
 @SpringBootApplication
 public class NyReaderApplication implements CommandLineRunner {
-	// TODO: debug - remove
-	@Autowired
-	UserRepository userRepository;
+    // TODO: debug - remove
+    @Autowired
+    UserRepository userRepository;
 
-	public static void main(String[] args) {
-		SpringApplication.run(NyReaderApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(NyReaderApplication.class, args);
+    }
 
-	// TODO: debug - remove
-	@Override
-	public void run(String... args) throws Exception {
+    // TODO: debug - remove
+    @Override
+    public void run(String... args) throws Exception {
 //		PasswordEncoder encoder = new BCryptPasswordEncoder();
 //
 //		userRepository.deleteAll();
@@ -56,5 +56,5 @@ public class NyReaderApplication implements CommandLineRunner {
 //
 //		System.out.println(userRepository.findByUsername("user@example.com"));
 
-	}
+    }
 }
