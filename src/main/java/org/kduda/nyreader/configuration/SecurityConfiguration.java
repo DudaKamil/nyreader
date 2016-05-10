@@ -67,6 +67,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/**/*.js",
                 "/**/*.feedUrl",
                 "/**/*.map",
+                "/**/*.json",
                 "/auth/**").permitAll()
             .anyRequest().authenticated();
 

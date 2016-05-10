@@ -48,7 +48,7 @@ gulp.task("libs", () => {
     // TODO: new version for Angular RC
     // copy Angular 2 translate library, separate folder must be created
     gulp.src(paths.ng2translate)
-        .pipe(gulp.dest(paths.staticResources + "libs/js/ng2-translate"));
+        .pipe(gulp.dest(paths.staticResources + "libs/js"));
 
     // copy Bootstrap JS
     gulp.src(paths.bootstrapJs)

@@ -14,8 +14,7 @@ import {UserHomeComponent} from "./userHome/user-home.component";
     styleUrls: ["app/components/application.component.css"],
     directives: [ROUTER_DIRECTIVES],
     providers: [AuthenticationService],
-    pipes: []
-    // pipes: [TranslatePipe]
+    pipes: [TranslatePipe]
 })
 @RouteConfig([
     {path: "/welcome", name: "Welcome", component: WelcomeComponent, useAsDefault: true},
@@ -24,26 +23,26 @@ import {UserHomeComponent} from "./userHome/user-home.component";
     {path: "/my", name: "Home", component: UserHomeComponent}
 ])
 export class ApplicationComponent {
+    // TODO: ng2-translate for angular 2 rc
     constructor(private _authenticationService: AuthenticationService,
-                private _router: Router) {
+                private _router: Router,
+                private _translateService: TranslateService) {
+        // use navigator lang if available
+        let userLang = navigator.language.split("-")[0];
+        userLang = /(pl|en)/gi.test(userLang) ? userLang : "en";
+
+        // this language will be used as a fallback when a translation isn't found in the current language
+        _translateService.setDefaultLang("en");
+
+        // the lang to use, if the lang isn't available, it will use the current loader to get them
+        _translateService.use(userLang);
+
+        console.log(_translateService.currentLang);
     }
 
-    // TODO: ng2-translate for angular 2 rc
-    // constructor(private translate: TranslateService) {
-    //     this.translate = translate;
-    //     let userLang = navigator.language.split("-")[0]; // use navigator lang if available
-    //     userLang = /(pl|en)/gi.test(userLang) ? userLang : "en";
-    //
-    //     // this language will be used as a fallback when a translation isn't found in the current language
-    //     translate.setDefaultLang("en");
-    //
-    //     // the lang to use, if the lang isn't available, it will use the current loader to get them
-    //     translate.use(userLang);
-    // }
-    //
-    // changeLanguate(language: string) {
-    //     this.translate.use(language);
-    // }
+    changeLanguate(language: string) {
+        this._translateService.use(language);
+    }
 
     logout(): void {
         this._authenticationService.logout();

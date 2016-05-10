@@ -5,11 +5,13 @@ import {FORM_PROVIDERS} from "@angular/common";
 import {provide} from "@angular/core";
 import {AuthHttp, AuthConfig} from "angular2-jwt";
 import {ApplicationComponent} from "./components/application.component";
+import {TRANSLATE_PROVIDERS, TranslateLoader, TranslateStaticLoader, TranslateService} from "ng2-translate";
 
 bootstrap(ApplicationComponent, [
     ROUTER_PROVIDERS,
     HTTP_PROVIDERS,
     FORM_PROVIDERS,
+    TRANSLATE_PROVIDERS,
     provide(AuthHttp, {
         useFactory: (http) => {
             return new AuthHttp(new AuthConfig({
@@ -17,14 +19,10 @@ bootstrap(ApplicationComponent, [
             }), http);
         },
         deps: [Http]
-    })
+    }),
+    provide(TranslateLoader, {
+        useFactory: (http: Http) => new TranslateStaticLoader(http, "app/locale", ".json"),
+        deps: [Http]
+    }),
+    TranslateService
 ]);
-
-// TODO: ng2-translate for angular 2 rc
-// bootstrap(ApplicationComponent,
-//     [ROUTER_PROVIDERS, HTTP_PROVIDERS, TRANSLATE_PROVIDERS,
-//         provide(TranslateLoader, {
-//             useFactory: (http: Http) => new TranslateStaticLoader(http, "app/locale", ".json"),
-//             deps: [Http]
-//         })
-//     ]);

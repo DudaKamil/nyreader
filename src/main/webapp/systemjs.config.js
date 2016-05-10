@@ -4,7 +4,6 @@
         'app':                        'app', // 'dist',
         'rxjs':                       'libs/js/rxjs',
         '@angular':                   'libs/js/@angular',
-        'ng2-translate':              'libs/js/ng2-translate',
         'angular2-jwt':               'libs/js/angular2-jwt'
     };
 
