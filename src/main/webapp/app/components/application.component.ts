@@ -40,7 +40,7 @@ export class ApplicationComponent {
         console.log(_translateService.currentLang);
     }
 
-    changeLanguate(language: string) {
+    changeLanguage(language: string) {
         this._translateService.use(language);
     }
 

@@ -13,6 +13,8 @@
         <h1>translate test</h1>
         <div>{{'HELLO' | translate}}</div>
         <div>{{'LOGIN' | translate}}</div>
+        <button class="btn btn-info" (click)="changeLanguage('pl')">PL</button>
+        <button class="btn btn-info" (click)="changeLanguage('en')">EN</button>
     </div>
     <router-outlet></router-outlet>
 </div>
