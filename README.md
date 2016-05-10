@@ -7,6 +7,8 @@ RSS feeds reader web application.
 Created using Java Spring and Angular 2.
 
 ## Build and run
+Requires a running MongoDB database (default port: 27017).
+
 1. `./gradlew build`
 2. `./gradlew bootRun` or `java -jar build/libs/nyreader-1.0.0.jar`
 
