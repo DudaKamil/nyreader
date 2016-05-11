@@ -8,5 +8,7 @@
   "LOGIN":"Zaloguj",
   "REGISTER":"Zarejestruj",
   "SIGN_OUT":"Wyloguj",
-  "PUBLISHED":"Opublikowano: "
+  "PUBLISHED":"Opublikowano: ",
+  "HAVE_ACC":"Masz już konto? Zaloguj się!",
+  "SIGN_UP": "Zarejestruj"
 }

@@ -1,46 +1,55 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-md-6 col-md-offset-3">
-            <div class="well login-wall">
-                <h1>Sign Up</h1>
-                <form [ngFormModel]="registerForm" novalidate (submit)="onSubmit()" *ngIf="active">
-                    <div class="form-group">
-                        <label for="username">Email</label>
-                        <input id="username" type="email" class="form-control" placeholder="email"
-                               [(ngModel)]="model.username" ngControl="username" #username="ngForm">
-                    </div>
-                    <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-                        Please provide a valid email address!
-                    </div>
+<div class="register-form">
+    <div class="well register-well">
+        <h1>Sign Up</h1>
+        <form [ngFormModel]="registerForm" novalidate (submit)="onSubmit()" *ngIf="active">
+            <div class="form-group">
+                <label for="username">Email </label>
+                <input id="username" type="email" class="form-control" placeholder="email"
+                       [(ngModel)]="model.username" ngControl="username" #username="ngForm">
+            </div>
+            <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
+                Please provide a valid email address!
+            </div>
 
+            <div class="row">
+                <div class="col-md-6">
                     <div class="form-group">
                         <label for="password">Password</label>
                         <input id="password" type="password" class="form-control" placeholder="password"
                                [(ngModel)]="model.password" ngControl="password" #password="ngForm">
                     </div>
-
+                </div>
+                <div class="col-md-6">
                     <div class=" form-group">
                         <label for="confirm_password">Confirm password</label>
                         <input id="confirm_password" type="password" class="form-control" placeholder="confirm password"
                                ngControl="confirm_password" #confirm_password="ngForm" [(ngModel)]="confirmPassword"
                                (keyup)="onKeyup(confirm_password.value)">
                     </div>
-
-                    <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-                        Password needs to be at least 6 characters!
-                        <div *ngIf="error">
-                            {{error}}
-                        </div>
-                    </div>
-                    <div *ngIf="passwordError" class="alert alert-danger">
-                        {{passwordError}}
-                    </div>
-
-                    <button type="submit" class="btn btn-default" [disabled]="!registerForm.valid || passwordError">
-                        Sign Up
-                    </button>
-                </form>
+                </div>
             </div>
-        </div>
+            <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
+                Password needs to be at least 6 characters!
+                <div *ngIf="error">
+                    {{error}}
+                </div>
+            </div>
+            <div *ngIf="passwordError" class="alert alert-danger">
+                {{passwordError}}
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 pull-right">
+                    <button type="submit" class="btn btn-success" [disabled]="!registerForm.valid || passwordError">
+                        {{'SIGN_UP' | translate}}
+                    </button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 pull-right">
+                    <a [routerLink]="['Login']" class="btn btn-primary"> {{'HAVE_ACC' | translate}}</a>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

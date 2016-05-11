@@ -3,16 +3,17 @@ import {FormBuilder, Validators} from "@angular/common";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {User} from "../../../common/user";
 import {ValidationService} from "../../../services/validation.service";
-import {CanActivate} from "@angular/router-deprecated";
+import {CanActivate, Router, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {isAuthenticated} from "../../../services/is-authenticated";
-import {Router} from "@angular/router-deprecated";
-import {Control, ControlGroup} from "@angular/common";
 import {Title} from "@angular/platform-browser";
+import {TranslatePipe} from "ng2-translate";
 
 @Component({
     templateUrl: "app/components/auth/register/register-form.component.html",
     styleUrls: ["app/components/auth/register/register-form.component.css"],
-    providers: [AuthenticationService, Title]
+    directives: [ROUTER_DIRECTIVES],
+    providers: [AuthenticationService, Title],
+    pipes:[TranslatePipe]
 })
 @CanActivate(() => !isAuthenticated())
 export class RegisterComponent {
@@ -48,8 +49,6 @@ export class RegisterComponent {
                 msg => {
                     this._authenticationService.authenticate(this.model)
                         .subscribe(msg => {
-                            // this.model = new User("", "");
-                            // this.error = "";
                             this._router.navigate(["Home"]);
                         });
                 },

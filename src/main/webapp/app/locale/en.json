@@ -8,5 +8,7 @@
   "LOGIN":"Sign In",
   "REGISTER":"Sign Up",
   "SIGN_OUT":"Sign Out",
-  "PUBLISHED":"Published on: "
+  "PUBLISHED":"Published on: ",
+  "HAVE_ACC":"Have an account? Sign In here!",
+  "SIGN_UP": "Complete registration"
 }
