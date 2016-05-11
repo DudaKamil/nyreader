@@ -26,12 +26,24 @@
     </div>
 
     <div>
+        <h3>Feeds</h3>
         <ul>
             <li *ngFor="let feed of feeds">
                 {{feed.url}}
+                <button class="btn btn-info" (click)="displayFeed(feed)">Display</button>
                 <button class="btn btn-danger" (click)="deleteFeed(feed.url)">Delete</button>
             </li>
         </ul>
+    </div>
+
+    <div *ngIf="currentFeed">
+        <h3>{{currentFeed.title}}</h3>
+        <ul>
+            <li *ngFor="let entry of currentFeed.entries">
+                <a href="{{entry.link}}" (click)="redirectTo(entry.link, $event)">{{entry.title}} </a>
+            </li>
+        </ul>
+
     </div>
 </div>
 

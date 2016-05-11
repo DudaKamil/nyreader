@@ -25,6 +25,10 @@ export class FeedService {
         return this._authHttp.post(this._feedsEndpoint, newUrl, this._options);
     }
 
+    refreshFeed(feedUrl: string) {
+        return this._authHttp.post(this._feedsEndpoint + "/refresh", feedUrl, this._options);
+    }
+
     deleteFeed(feed: string) {
         return this._authHttp.post(this._feedsEndpoint + "/delete", feed, this._options);
     }

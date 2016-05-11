@@ -48,8 +48,6 @@ export class LoginComponent {
                         localStorage.removeItem("rememberMeUsername");
                     }
 
-                    // this.model = new User("", "");
-                    // this.error = "";
                     this._router.navigate(["Home"]);
                 },
                 error => {

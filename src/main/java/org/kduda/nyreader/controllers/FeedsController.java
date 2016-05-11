@@ -67,4 +67,17 @@ public class FeedsController {
         userRepository.save(user);
         return ResponseEntity.ok("success");
     }
+
+//    @RequestMapping(value = "/feed/refresh", method = RequestMethod.GET)
+//    public List<Feed> refresh(HttpServletRequest request) {
+//        User user = this.userUtils.getCurrentUser(request);
+//        List<Feed> feeds = user.getFeeds();
+//
+//        feeds.parallelStream()
+//             .forEachOrdered(feed -> {
+//
+//             });
+//
+//
+//    }
 }

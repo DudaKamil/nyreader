@@ -21,6 +21,7 @@ export class UserHomeComponent implements OnInit {
     public feeds: Feed[] = [];
     public newUrl: string = "";
     public active: boolean = true;
+    public currentFeed: Feed = null;
 
     onSubmit() {
         let newFeed: Feed = new Feed();
@@ -43,6 +44,15 @@ export class UserHomeComponent implements OnInit {
             .subscribe(
                 res => this.getAllFeeds()
             );
+    }
+
+    displayFeed(feed: Feed) {
+        this.currentFeed = feed;
+    }
+
+    redirectTo(link: string, event: any) {
+        window.open(link);
+        event.preventDefault();
     }
 
     private getAllFeeds() {
