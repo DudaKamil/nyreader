@@ -7,11 +7,12 @@ import {CanActivate} from "@angular/router-deprecated";
 import {isAuthenticated} from "../../../services/is-authenticated";
 import {Router} from "@angular/router-deprecated";
 import {Control, ControlGroup} from "@angular/common";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     templateUrl: "app/components/auth/register/register-form.component.html",
     styleUrls: ["app/components/auth/register/register-form.component.css"],
-    providers: [AuthenticationService]
+    providers: [AuthenticationService, Title]
 })
 @CanActivate(() => !isAuthenticated())
 export class RegisterComponent {
@@ -25,7 +26,10 @@ export class RegisterComponent {
 
     constructor(private _authenticationService: AuthenticationService,
                 private _formBuilder: FormBuilder,
-                private _router: Router) {
+                private _router: Router,
+                private _title: Title) {
+        this._title.setTitle("NyReader - RSS Reader - SignUp");
+
         this.registerForm = _formBuilder.group({
                 username: ["", Validators.compose([Validators.required, ValidationService.emailValidator])],
                 password: ["", Validators.compose([Validators.required, Validators.minLength(6)])],

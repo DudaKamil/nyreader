@@ -5,11 +5,12 @@ import {AuthenticationService} from "../../../services/authentication.service";
 import {User} from "../../../common/user";
 import {ValidationService} from "../../../services/validation.service";
 import {isAuthenticated} from "../../../services/is-authenticated";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     templateUrl: "app/components/auth/login/login-form.component.html",
     styleUrls: ["app/components/auth/login/login-form.component.css"],
-    providers: [AuthenticationService]
+    providers: [AuthenticationService, Title]
 })
 @CanActivate(() => !isAuthenticated())
 export class LoginComponent {
@@ -22,7 +23,10 @@ export class LoginComponent {
 
     constructor(private _authenticationService: AuthenticationService,
                 private _formBuilder: FormBuilder,
-                private _router: Router) {
+                private _router: Router,
+                private _title: Title) {
+        this._title.setTitle("NyReader - RSS Reader - SignIn");
+
         this.loginForm = _formBuilder.group({
             username: ["", Validators.compose([Validators.required, ValidationService.emailValidator])],
             password: ["", Validators.required]

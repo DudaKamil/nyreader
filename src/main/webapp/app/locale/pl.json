@@ -1,5 +1,7 @@
 {
   "DELETE": "Usuń",
   "DISPLAY": "Wyswietl",
-  "MY_FEEDS": "Moje subskrybowane kanały"
+  "MY_FEEDS": "Moje subskrybowane kanały",
+  "ADD": "Dodaj nowy",
+  "ADD_NEW_HEADER": "Sybskrybuj nowy kanał"
 }

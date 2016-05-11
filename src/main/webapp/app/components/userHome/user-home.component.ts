@@ -4,16 +4,19 @@ import {isAuthenticated} from "../../services/is-authenticated";
 import {FeedService} from "../../services/feed.service";
 import {Feed} from "../../common/feed";
 import {TranslatePipe} from "ng2-translate";
+import {Title} from "@angular/platform-browser";
 
 @Component({
     templateUrl: "app/components/userHome/user-home.component.html",
     styleUrls: ["app/components/userHome/user-home.component.css"],
-    providers: [FeedService],
+    providers: [FeedService, Title],
     pipes: [TranslatePipe]
 })
 @CanActivate(() => isAuthenticated())
 export class UserHomeComponent implements OnInit {
-    constructor(private _feedService: FeedService) {
+    constructor(private _feedService: FeedService,
+                private _title: Title) {
+        this._title.setTitle("NyReader - RSS Reader - Homepage");
     }
 
     ngOnInit(): any {

@@ -1,5 +1,7 @@
 {
   "DELETE": "Delete",
   "DISPLAY": "Show",
-  "MY_FEEDS": "My subscribed feeds"
+  "MY_FEEDS": "My subscribed feeds",
+  "ADD": "Add new",
+  "ADD_NEW_HEADER": "Subscribe to new feed"
 }
