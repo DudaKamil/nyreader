@@ -12,12 +12,17 @@
   "HAVE_ACC": "Masz już konto? Zaloguj się!",
   "SIGN_UP": "Zarejestruj",
   "SIGN_UP_TITLE": "Zarejestruj się",
-  "EMAIL_ERROR": "Podany adres e-mail jest błędny!",
+  "EMAIL_ERROR": "Proszę podać prawidłowy adres e-mail!",
   "PASSWD": "Hasło",
   "PASSWD_PLACE": "hasło",
   "PASSWD_CONFIRM": "Potwierdź hasło",
   "PASSWD_CONFIRM_PLACE": "potwierdź hasło",
   "PASSWD_ERROR": "Hasło musi mieć conajmniej 6 znaków!",
   "PASSWD_MATCH_ERROR": "Hasłą nie są jednakowe",
-  "USER_EXISTS_ERROR": "Użytkonik już istnieje!"
+  "USER_EXISTS_ERROR": "Użytkonik już istnieje!",
+  "SIGN_IN": "Zaloguj się",
+  "PASSWD_REQUIRED": "Hasło jest wymagane!",
+  "LOGIN_ERROR": "Nazwa użytkownika lub hasło są nieprawidłowe!",
+  "REMEMBER_ME": " Zapamiętaj mnie",
+  "NO_ACCOUNT": "Nie masz konta? Zarejestruj się tutaj!"
 }

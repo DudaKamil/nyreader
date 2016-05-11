@@ -1,6 +1,12 @@
 $green: #42A948;
 $red: #a94442;
 
+@mixin shadow {
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(128, 128, 128, 1);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(128, 128, 128, 1);
+  box-shadow: 2px 2px 5px 0px rgba(128, 128, 128, 1);
+}
+
 .login-wall {
   margin-top: 2em;
 }
@@ -11,4 +17,43 @@ $red: #a94442;
 
 .ng-invalid {
   border-left: 5px solid $red;
+}
+
+.container-table {
+  display: table;
+}
+
+.vertical-center-row {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.register-well {
+  border-radius: 0;
+  margin-top: 15%;
+  border: 0 solid transparent;
+  background-color: #e8e8e8;
+  @include shadow;
+}
+
+.row {
+  .btn {
+    width: 100%;
+    margin-top: 10px;
+    color: #ffffff;
+    @include shadow()
+  }
+}
+
+.btn-primary {
+  background-color: #797979;
+}
+
+.btn-primary:hover {
+  background-color: #999999;
+}
+
+.checkbox{
+  margin-right: 20px;
+  margin-bottom: 0;
 }

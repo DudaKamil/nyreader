@@ -1,16 +1,20 @@
 import {Component} from "@angular/core";
 import {Validators, FormBuilder} from "@angular/common";
-import {Router, CanActivate} from "@angular/router-deprecated";
+import {Router, CanActivate, ROUTER_DIRECTIVES} from "@angular/router-deprecated";
 import {AuthenticationService} from "../../../services/authentication.service";
 import {User} from "../../../common/user";
 import {ValidationService} from "../../../services/validation.service";
 import {isAuthenticated} from "../../../services/is-authenticated";
 import {Title} from "@angular/platform-browser";
+import {TranslatePipe} from "ng2-translate";
 
 @Component({
     templateUrl: "app/components/auth/login/login-form.component.html",
     styleUrls: ["app/components/auth/login/login-form.component.css"],
-    providers: [AuthenticationService, Title]
+    providers: [AuthenticationService, Title],
+    directives: [ROUTER_DIRECTIVES],
+    pipes: [TranslatePipe
+    ]
 })
 @CanActivate(() => !isAuthenticated())
 export class LoginComponent {

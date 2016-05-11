@@ -19,5 +19,10 @@
   "PASSWD_CONFIRM_PLACE": "confirm password",
   "PASSWD_ERROR": "Password needs to be at least 6 characters!",
   "PASSWD_MATCH_ERROR": "Passwords does not match!",
-  "USER_EXISTS_ERROR": "That user already exists!"
+  "USER_EXISTS_ERROR": "That user already exists!",
+  "SIGN_IN": "Sign In",
+  "PASSWD_REQUIRED": "Password is required!",
+  "LOGIN_ERROR": "Username or password does not match!",
+  "REMEMBER_ME": " Remember me",
+  "NO_ACCOUNT": "Don't have an account? Sign Up here!"
 }
