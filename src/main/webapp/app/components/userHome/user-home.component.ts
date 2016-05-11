@@ -75,6 +75,11 @@ export class UserHomeComponent implements OnInit {
         event.preventDefault();
     }
 
+    getDate(milliseconds: any) {
+        let date: Date = new Date(milliseconds);
+        return date.toLocaleString("pl");
+    }
+
     private getAllFeeds() {
         console.log("getAllFeeds()");
         this._feedService.getUserFeeds()

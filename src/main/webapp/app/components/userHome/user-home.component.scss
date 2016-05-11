@@ -70,15 +70,56 @@ $red: #a94442;
   background-color: #6b6b95;
 }
 
-.btn-title{
+.btn-title {
   color: white;
   background-color: #585858;
 }
-.btn-title:hover{
+
+.btn-title:hover {
   background-color: #7e7e7e;
 }
 
-#feeds-title{
+.feeds-title {
   font-size: 2em;
   font-weight: bold;
+}
+
+.entries-list {
+  margin-top: 20px;
+  list-style: none;
+
+  li {
+    margin: 10px;
+    border-top: 1px;
+    border-color: black;
+  }
+  a {
+    width: 100%;
+  }
+}
+
+.btn-entry {
+  color: white;
+  background-color: #525272;
+  text-align: left;
+}
+
+.btn-entry:hover {
+  background-color: #6b6b95;
+}
+
+ul {
+  padding-left: 0;
+}
+
+.entry-title {
+  font-weight: bold;
+  font-size: 1.2em;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+.entry-description {
+  word-wrap: break-word;
+  white-space: normal;
 }

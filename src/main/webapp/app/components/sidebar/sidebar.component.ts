@@ -18,6 +18,9 @@ export class SidebarComponent {
     }
 
     changeLanguage(language: string) {
+        if (this._translateService.currentLang == language) {
+            return;
+        }
         this._translateService.use(language);
     }
 

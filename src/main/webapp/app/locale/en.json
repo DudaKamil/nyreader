@@ -7,5 +7,6 @@
   "MY_SUBS": "My subscribtions",
   "LOGIN":"Sign In",
   "REGISTER":"Sign Up",
-  "SIGN_OUT":"Sign Out"
+  "SIGN_OUT":"Sign Out",
+  "PUBLISHED":"Published on: "
 }
