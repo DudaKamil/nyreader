@@ -1,6 +1,6 @@
 <div class="register-form">
     <div class="well register-well">
-        <h1>Sign Up</h1>
+        <h1>{{'SIGN_UP_TITLE' | translate}}</h1>
         <form [ngFormModel]="registerForm" novalidate (submit)="onSubmit()" *ngIf="active">
             <div class="form-group">
                 <label for="username">Email </label>
@@ -8,34 +8,36 @@
                        [(ngModel)]="model.username" ngControl="username" #username="ngForm">
             </div>
             <div [hidden]="username.valid || username.pristine" class="alert alert-danger">
-                Please provide a valid email address!
+                {{'EMAIL_ERROR' | translate}}
             </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" type="password" class="form-control" placeholder="password"
+                        <label for="password">{{'PASSWD' | translate}}</label>
+                        <input id="password" type="password" class="form-control"
+                               placeholder="{{'PASSWD_PLACE' | translate}}"
                                [(ngModel)]="model.password" ngControl="password" #password="ngForm">
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class=" form-group">
-                        <label for="confirm_password">Confirm password</label>
-                        <input id="confirm_password" type="password" class="form-control" placeholder="confirm password"
+                        <label for="confirm_password">{{'PASSWD_CONFIRM' | translate}}</label>
+                        <input id="confirm_password" type="password" class="form-control"
+                               placeholder="{{'PASSWD_CONFIRM_PLACE' | translate}}"
                                ngControl="confirm_password" #confirm_password="ngForm" [(ngModel)]="confirmPassword"
                                (keyup)="onKeyup(confirm_password.value)">
                     </div>
                 </div>
             </div>
             <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
-                Password needs to be at least 6 characters!
+                {{'PASSWD_ERROR' | translate}}
                 <div *ngIf="error">
-                    {{error}}
+                    {{'USER_EXISTS_ERROR' | translate}}
                 </div>
             </div>
             <div *ngIf="passwordError" class="alert alert-danger">
-                {{passwordError}}
+                {{'PASSWD_MATCH_ERROR' | translate}}
             </div>
 
             <div class="row">
