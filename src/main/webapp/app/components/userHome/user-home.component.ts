@@ -79,7 +79,6 @@ export class UserHomeComponent implements OnInit {
     }
 
     private getAllFeeds() {
-        console.log("getAllFeeds()");
         this._feedService.getUserFeeds()
             .subscribe(
                 res => {

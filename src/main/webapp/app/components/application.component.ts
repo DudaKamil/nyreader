@@ -27,17 +27,12 @@ export class ApplicationComponent {
     constructor(private _authenticationService: AuthenticationService,
                 private _router: Router,
                 private _translateService: TranslateService) {
-        // use navigator lang if available
         let userLang = navigator.language.split("-")[0];
         userLang = /(pl|en)/gi.test(userLang) ? userLang : "en";
 
-        // this language will be used as a fallback when a translation isn't found in the current language
-        _translateService.setDefaultLang("en");
+        this._translateService.setDefaultLang("en");
 
-        // the lang to use, if the lang isn't available, it will use the current loader to get them
-        _translateService.use(userLang);
-
-        console.log(_translateService.currentLang);
+        this._translateService.use(userLang);
     }
 
     changeLanguage(language: string) {

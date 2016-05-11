@@ -24,5 +24,10 @@
   "PASSWD_REQUIRED": "Hasło jest wymagane!",
   "LOGIN_ERROR": "Nazwa użytkownika lub hasło są nieprawidłowe!",
   "REMEMBER_ME": " Zapamiętaj mnie",
-  "NO_ACCOUNT": "Nie masz konta? Zarejestruj się tutaj!"
+  "NO_ACCOUNT": "Nie masz konta? Zarejestruj się tutaj!",
+  "WELCOME": "Witaj w NyReader!",
+  "WELCOME_MSG": "Lekki i prosty czytnik RSS.",
+  "START": "Rozpocznij!",
+  "IMG_ALT": "NyReader zapowiedz",
+  "SNEAK": "Zobacz, co mamy do zaoferowania"
 }

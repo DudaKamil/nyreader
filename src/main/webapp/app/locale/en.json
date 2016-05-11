@@ -3,7 +3,7 @@
   "DISPLAY": "Show",
   "MY_FEEDS": "My subscribed feeds",
   "ADD": "Add new",
-  "ADD_NEW_HEADER": "Subscribe to new feed",
+  "ADD_NEW_HEADER": "Subscribe to a new feed",
   "MY_SUBS": "My subscriptions",
   "LOGIN": "Sign In",
   "REGISTER": "Sign Up",
@@ -24,5 +24,10 @@
   "PASSWD_REQUIRED": "Password is required!",
   "LOGIN_ERROR": "Username or password does not match!",
   "REMEMBER_ME": " Remember me",
-  "NO_ACCOUNT": "Don't have an account? Sign Up here!"
+  "NO_ACCOUNT": "Don't have an account? Sign Up here!",
+  "WELCOME": "Welcome to NyReader!",
+  "WELCOME_MSG": "A light and simple RSS reader.",
+  "START": "Start Now!",
+  "IMG_ALT": "NyReader sneak peak",
+  "SNEAK": "Have a sneak peak to what we have"
 }

@@ -1,49 +1,29 @@
-<div class="jumbotron">
-    <div class="container">
-        <h1>Welcome NyReader!</h1>
-        <p>Welcome component</p>
-        <p>
-         TEKST
-        </p>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <div class="banner">
+                <span class="title">{{'WELCOME' | translate}}</span>
+                <br>
+                <span class="more">{{'WELCOME_MSG' | translate}}</span>
+            </div>
+        </div>
     </div>
-</div>
 
-<div class="jumbotron">
-	<div class="container">
-		<h1>another jumbotron</h1>
-		<p>Contents...</p>
-		<p>
-			<a class="btn btn-primary btn-lg">Learn more</a>
-		</p>
-	</div>
-</div>
-
-<div class="jumbotron">
-    <div class="container">
-        <h1>another jumbotron</h1>
-        <p>Contents...</p>
-        <p>
-            <a class="btn btn-primary btn-lg">Learn more</a>
-        </p>
+    <div class="row">
+        <div class="col-md-2">
+            <a [routerLink]="['Login']" class="btn btn-start">{{'START' | translate}}</a>
+        </div>
     </div>
-</div>
 
-<div class="jumbotron">
-    <div class="container">
-        <h1>another jumbotron</h1>
-        <p>Contents...</p>
-        <p>
-            <a class="btn btn-primary btn-lg">Learn more</a>
-        </p>
+    <div class="row">
+        <div class="col-md-9 sneak">
+            {{'SNEAK' | translate}}
+        </div>
     </div>
-</div>
 
-<div class="jumbotron">
-    <div class="container">
-        <h1>another jumbotron</h1>
-        <p>Contents...</p>
-        <p>
-            <a class="btn btn-primary btn-lg">Learn more</a>
-        </p>
+    <div class="row">
+        <div class="col-md-9">
+            <img src="/demo.png" class="img-responsive" alt="{{'IMG_ALT' | translate}}">
+        </div>
     </div>
 </div>

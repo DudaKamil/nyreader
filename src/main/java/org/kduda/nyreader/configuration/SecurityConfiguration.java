@@ -69,6 +69,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 "/**/*.map",
                 "/**/*.json",
                 "/**/*.ttf",
+                "/**/*.png",
                 "/**/*.ico",
                 "/auth/**").permitAll()
             .anyRequest().authenticated();

@@ -5,10 +5,10 @@ import {Title} from "@angular/platform-browser";
 
 @Component({
     templateUrl: "app/components/welcome/welcome.component.html",
+    styleUrls: ["app/components/welcome/welcome.component.css"],
     directives: [ROUTER_DIRECTIVES],
-    pipes: [],
-    providers: [Title]
-    // pipes: [TranslatePipe]
+    providers: [Title],
+    pipes: [TranslatePipe]
 })
 export class WelcomeComponent {
     constructor(private _title: Title) {

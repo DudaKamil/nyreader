@@ -64,6 +64,10 @@ gulp.task("libs", () => {
     // copy favicon
     gulp.src(paths.workingDir + "**/*.ico")
         .pipe(gulp.dest(paths.staticResources));
+
+    // copy images
+    gulp.src(paths.workingDir + "**/*.png")
+        .pipe(gulp.dest(paths.staticResources));
 });
 
 gulp.task("html", () => {
