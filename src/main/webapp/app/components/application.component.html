@@ -5,6 +5,8 @@
         <li><a *ngIf="!isLoggedin()" [routerLink]="['Register']" class="btn btn-primary btn-lg"> Register</a></li>
         <li><a *ngIf="isLoggedin()" [routerLink]="['Home']" class="btn btn-primary btn-lg"> My page</a></li>
         <li><a *ngIf="isLoggedin()" (click)="logout()" class="btn btn-primary btn-lg"> Sign out</a></li>
+        <li><a class="btn btn-info" (click)="changeLanguage('pl')">PL</a></li>
+        <li><a class="btn btn-info" (click)="changeLanguage('en')">EN</a></li>
     </ul>
 </div>
 
@@ -13,8 +15,6 @@
         <h1>translate test</h1>
         <div>{{'HELLO' | translate}}</div>
         <div>{{'LOGIN' | translate}}</div>
-        <button class="btn btn-info" (click)="changeLanguage('pl')">PL</button>
-        <button class="btn btn-info" (click)="changeLanguage('en')">EN</button>
     </div>
     <router-outlet></router-outlet>
 </div>

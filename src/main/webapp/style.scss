@@ -18,12 +18,17 @@
 .container-table {
   display: table;
 }
+
 .vertical-center-row {
   display: table-cell;
   vertical-align: middle;
 }
 
 // spinner
+.spinner {
+  margin-top: -1em;
+}
+
 .sk-cube-grid {
   width: 2em;
   height: 2em;

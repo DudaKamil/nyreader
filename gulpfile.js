@@ -60,6 +60,10 @@ gulp.task("libs", () => {
     // copy fonts
     gulp.src(paths.workingDir + "**/*.ttf")
         .pipe(gulp.dest(paths.staticResources));
+
+    // copy favicon
+    gulp.src(paths.workingDir + "**/*.ico")
+        .pipe(gulp.dest(paths.staticResources));
 });
 
 gulp.task("html", () => {

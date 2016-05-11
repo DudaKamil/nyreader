@@ -1,32 +1,18 @@
 <html>
 <head>
     <base href="/">
-    <title>NyReader</title>
+    <title>NyReader - RSS Reader</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="nyreader-favicon.ico" type="image/x-icon">
+    <link rel="icon" href="nyreader-favicon.ico" type="image/x-icon">
     <meta name="viewport" url="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="libs/css/bootstrap.css">
     <link rel="stylesheet" href="style.css">
-
-    <!-- Libraries -->
-    <script src="libs/js/es6-shim.min.js"></script>
-
-    <script src="libs/js/zone.js"></script>
-    <script src="libs/js/Reflect.js"></script>
-    <script src="libs/js/system.src.js"></script>
-
-    <script src="libs/js/ng2-translate.js"></script>
-
-    <!-- SystemJS -->
-    <script src="systemjs.config.js"></script>
-    <script>
-        System.import('app').catch(function (err) {
-            console.error(err);
-        });
-    </script>
 </head>
 
-<!-- Display the application -->
 <body>
+<!-- Display the application -->
 <application>
     <div class="logo container container-table">
         <div class="row vertical-center-row">
@@ -49,6 +35,23 @@
         </div>
     </div>
 </application>
+
+<!-- Libraries -->
+<script src="libs/js/es6-shim.min.js"></script>
+
+<script src="libs/js/zone.js"></script>
+<script src="libs/js/Reflect.js"></script>
+<script src="libs/js/system.src.js"></script>
+
+<script src="libs/js/ng2-translate.js"></script>
+
+<!-- SystemJS -->
+<script src="systemjs.config.js"></script>
+<script>
+    System.import('app').catch(function (err) {
+        console.error(err);
+    });
+</script>
 
 </body>
 </html>
