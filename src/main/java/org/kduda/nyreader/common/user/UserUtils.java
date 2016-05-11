@@ -11,6 +11,7 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class UserUtils {
@@ -35,5 +36,19 @@ public class UserUtils {
             feeds = new ArrayList<>();
         feeds.add(FeedFactory.create(syndFeed, feedUrl));
         user.setFeeds(feeds);
+    }
+
+    public boolean checkIfHasFeed(User user, String feedUrl) {
+        boolean result = false;
+        List<Feed> feeds = user.getFeeds();
+
+        Optional<Feed> duplicates = feeds.parallelStream()
+                                         .filter(feed -> feed.getUrl().equals(feedUrl))
+                                         .findAny();
+
+        if (duplicates.isPresent())
+            result = true;
+
+        return result;
     }
 }

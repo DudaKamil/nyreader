@@ -23,12 +23,13 @@ import java.util.List;
 public class FeedsController {
     @Autowired
     FeedReaderService feedReaderService;
+
     @Autowired
     UserUtils userUtils;
+
     @Value("${jwt.token.header}")
     private String TOKEN_HEADER;
-    @Autowired
-    private JwtTokenUtil jwtTokenUtil;
+
     @Autowired
     private UserRepository userRepository;
 
@@ -40,17 +41,21 @@ public class FeedsController {
 
     @RequestMapping(value = "/feed", method = RequestMethod.POST)
     public ResponseEntity<?> addFeed(@RequestBody String feedUrl, HttpServletRequest request) {
+        User user = this.userUtils.getCurrentUser(request);
+        boolean hasFeed = this.userUtils.checkIfHasFeed(user, feedUrl);
+
+        if (hasFeed)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("exists");
+
         boolean isValid = this.feedReaderService.checkValidity(feedUrl);
 
         if (isValid) {
-            User user = this.userUtils.getCurrentUser(request);
             SyndFeed syndFeed = this.feedReaderService.getCurrentFeed();
-            // TODO: check if feed already exists
             this.userUtils.addFeed(user, syndFeed, feedUrl);
 
             userRepository.save(user);
         } else {
-            return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE).body("error");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("error");
         }
 
         return ResponseEntity.ok("success");
@@ -67,17 +72,4 @@ public class FeedsController {
         userRepository.save(user);
         return ResponseEntity.ok("success");
     }
-
-//    @RequestMapping(value = "/feed/refresh", method = RequestMethod.GET)
-//    public List<Feed> refresh(HttpServletRequest request) {
-//        User user = this.userUtils.getCurrentUser(request);
-//        List<Feed> feeds = user.getFeeds();
-//
-//        feeds.parallelStream()
-//             .forEachOrdered(feed -> {
-//
-//             });
-//
-//
-//    }
 }

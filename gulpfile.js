@@ -23,9 +23,9 @@ var paths = {
         "./node_modules/es6-shim/es6-shim.min.js",
         "./node_modules/zone.js/dist/zone.js",
         "./node_modules/reflect-metadata/Reflect.js",
-        "./node_modules/systemjs/dist/system.src.js"
+        "./node_modules/systemjs/dist/system.src.js",
+        "./node_modules/ng2-translate/bundles/ng2-translate.js"
     ],
-    ng2translate: ["./node_modules/ng2-translate/bundles/ng2-translate.js"],
     systemjsConfig: ["src/main/webapp/systemjs.config.js"],
     bootstrapCss: ["./node_modules/bootstrap/dist/css/bootstrap.css"],
     bootstrapJs: [
@@ -45,11 +45,6 @@ gulp.task("libs", () => {
     gulp.src(paths.otherLibs)
         .pipe(gulp.dest(paths.staticResources + "libs/js"));
 
-    // TODO: new version for Angular RC
-    // copy Angular 2 translate library, separate folder must be created
-    gulp.src(paths.ng2translate)
-        .pipe(gulp.dest(paths.staticResources + "libs/js"));
-
     // copy Bootstrap JS
     gulp.src(paths.bootstrapJs)
         .pipe(gulp.dest(paths.staticResources + "libs/js"));
@@ -60,6 +55,10 @@ gulp.task("libs", () => {
 
     // copy SystemJS Configuration (javascript file)
     gulp.src(paths.systemjsConfig)
+        .pipe(gulp.dest(paths.staticResources));
+
+    // copy fonts
+    gulp.src(paths.workingDir + "**/*.ttf")
         .pipe(gulp.dest(paths.staticResources));
 });
 

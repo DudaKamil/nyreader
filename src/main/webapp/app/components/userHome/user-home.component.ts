@@ -22,6 +22,8 @@ export class UserHomeComponent implements OnInit {
     public newUrl: string = "";
     public active: boolean = true;
     public currentFeed: Feed = null;
+    public feedAlreadyExists: boolean = false;
+    public feedProcessingError: boolean = false;
 
     onSubmit() {
         let newFeed: Feed = new Feed();
@@ -31,6 +33,17 @@ export class UserHomeComponent implements OnInit {
             .subscribe(
                 res => {
                     this.getAllFeeds();
+                    this.feedProcessingError = false;
+                    this.feedAlreadyExists = false;
+                },
+                error => {
+                    let msg: string = error._body;
+                    if (msg == "error") {
+                        this.feedProcessingError = true;
+                    }
+                    if (msg == "exists") {
+                        this.feedAlreadyExists = true;
+                    }
                 }
             );
 
@@ -48,6 +61,8 @@ export class UserHomeComponent implements OnInit {
 
     displayFeed(feed: Feed) {
         this.currentFeed = feed;
+        // TODO: debug
+        console.log(feed);
     }
 
     redirectTo(link: string, event: any) {
