@@ -1,19 +1,23 @@
-<div class="jumbotron">
-    <div class="container">
-        <h1>user home</h1>
-        <p>Contents...</p>
-        <p>
-            <a class="btn btn-primary btn-lg">Learn more</a>
-        </p>
-    </div>
-
+<div class="well feed-form-well">
     <div>
         <form class="feedForm" novalidate (submit)="onSubmit()" *ngIf="active">
-            <div class="form-group">
-                <label for="feedAddress">New feed</label>
-                <input id="feedAddress" class="form-control" required type="url" [(ngModel)]="newUrl"
-                       ngControl="feedInput" #feedInput="ngForm">
+            <label for="feedAddress" class="formLabel">Subscribe to new feed</label>
+
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-group">
+                        <input id="feedAddress" class="form-control" required type="url" [(ngModel)]="newUrl"
+                               ngControl="feedInput" #feedInput="ngForm">
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-submit" id="submitBtn" [disabled]="!feedInput.valid">
+                        Add new feed
+                    </button>
+                </div>
             </div>
+
 
             <div [hidden]="feedInput.valid || feedInput.pristine" class="alert alert-danger">
                 Please provide a valid address!
@@ -24,19 +28,27 @@
             <div *ngIf="feedProcessingError" class="alert alert-danger">
                 There was an error processing that channel. Please check if the url is correct.
             </div>
-            <button type="submit" class="btn btn-default" [disabled]="!feedInput.valid">
-                Add new feed
-            </button>
+
         </form>
     </div>
+</div>
 
+<div class="well">
     <div>
-        <h3>Feeds</h3>
-        <ul>
+        <p id="feeds-title">{{'MY_FEEDS' | translate}}</p>
+        <ul class="feed-list">
             <li *ngFor="let feed of feeds">
-                {{feed.url}}
-                <button class="btn btn-info" (click)="displayFeed(feed)">Display</button>
-                <button class="btn btn-danger" (click)="deleteFeed(feed.url)">Delete</button>
+                <div class="row">
+                    <div class="col-md-8">
+                        <a href="{{feed.link}}" class="btn btn-title" (click)="redirectTo(feed.link, $event)">{{feed.title}}</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn btn-display" (click)="displayFeed(feed)">{{'DISPLAY' | translate}}</a>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn btn-delete" (click)="deleteFeed(feed.url)">{{'DELETE' | translate}}</a>
+                    </div>
+                </div>
             </li>
         </ul>
     </div>
@@ -48,7 +60,7 @@
                 <a href="{{entry.link}}" (click)="redirectTo(entry.link, $event)">{{entry.title}} </a>
             </li>
         </ul>
-
     </div>
+
 </div>
 

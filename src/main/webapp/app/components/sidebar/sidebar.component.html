@@ -1,0 +1,14 @@
+<div class="sidebar">
+    <ul>
+        <li><a [routerLink]="['Welcome']" class="btn btn-primary btn-lg" id="brand"> NyReader</a></li>
+        <li><a *ngIf="!isLoggedin()" [routerLink]="['Login']" class="btn btn-primary btn-lg"> Login</a></li>
+        <li><a *ngIf="!isLoggedin()" [routerLink]="['Register']" class="btn btn-primary btn-lg"> Register</a></li>
+        <li><a *ngIf="isLoggedin()" [routerLink]="['Home']" class="btn btn-primary btn-lg"> My subscribtions</a></li>
+        <li><a *ngIf="isLoggedin()" (click)="logout()" class="btn btn-primary btn-lg"> Sign out</a></li>
+    </ul>
+    <ul class="lang-menu">
+        <li><a class="btn btn-primary btn-lg lang" (click)="changeLanguage('pl')">Polski</a></li>
+        <li><a class="btn btn-primary btn-lg lang" (click)="changeLanguage('en')">English</a></li>
+    </ul>
+</div>
+

@@ -3,11 +3,13 @@ import {CanActivate} from "@angular/router-deprecated";
 import {isAuthenticated} from "../../services/is-authenticated";
 import {FeedService} from "../../services/feed.service";
 import {Feed} from "../../common/feed";
+import {TranslatePipe} from "ng2-translate";
 
 @Component({
     templateUrl: "app/components/userHome/user-home.component.html",
     styleUrls: ["app/components/userHome/user-home.component.css"],
-    providers: [FeedService]
+    providers: [FeedService],
+    pipes: [TranslatePipe]
 })
 @CanActivate(() => isAuthenticated())
 export class UserHomeComponent implements OnInit {

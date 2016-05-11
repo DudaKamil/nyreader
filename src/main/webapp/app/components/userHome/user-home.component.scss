@@ -1,10 +1,84 @@
 $green: #42A948;
 $red: #a94442;
 
+@mixin shadow {
+  -webkit-box-shadow: 2px 2px 5px 0px rgba(128, 128, 128, 1);
+  -moz-box-shadow: 2px 2px 5px 0px rgba(128, 128, 128, 1);
+  box-shadow: 2px 2px 5px 0px rgba(128, 128, 128, 1);
+}
+
 .ng-valid {
   border-left: 5px solid $green;
 }
 
 .ng-invalid {
   border-left: 5px solid $red;
+}
+
+.well {
+  border-radius: 0;
+  border: 0 solid transparent;
+  background-color: #e8e8e8;
+  @include shadow;
+}
+
+.formLabel {
+  font-size: 1.5em;
+}
+
+#submitBtn {
+  width: 100%;
+}
+
+.btn {
+  @include shadow
+}
+
+.feed-form-well {
+  margin-top: 10px;
+}
+
+.feed-list {
+  margin-top: 20px;
+  list-style: none;
+
+  li {
+    margin: 10px;
+    border-top: 1px;
+    border-color: black;
+  }
+  a {
+    width: 100%;
+  }
+}
+
+.btn-delete {
+  color: white;
+  background-color: #7a5c5c;
+}
+
+.btn-delete:hover {
+  background-color: #a17979;
+}
+
+.btn-display {
+  color: white;
+  background-color: #525272;
+}
+
+.btn-display:hover {
+  background-color: #6b6b95;
+}
+
+.btn-title{
+  color: white;
+  background-color: #585858;
+}
+.btn-title:hover{
+  background-color: #7e7e7e;
+}
+
+#feeds-title{
+  font-size: 2em;
+  font-weight: bold;
 }

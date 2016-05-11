@@ -7,12 +7,13 @@ import {RegisterComponent} from "./auth/register/register-form.component";
 import {AuthenticationService} from "../services/authentication.service";
 import {isAuthenticated} from "../services/is-authenticated";
 import {UserHomeComponent} from "./userHome/user-home.component";
+import {SidebarComponent} from "./sidebar/sidebar.component";
 
 @Component({
     selector: "application",
     templateUrl: "app/components/application.component.html",
     styleUrls: ["app/components/application.component.css"],
-    directives: [ROUTER_DIRECTIVES],
+    directives: [ROUTER_DIRECTIVES, SidebarComponent],
     providers: [AuthenticationService],
     pipes: [TranslatePipe]
 })

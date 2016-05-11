@@ -1,21 +1,23 @@
-<div class="sidebar">
-    <ul>
-        <li><a [routerLink]="['Welcome']" class="btn btn-primary btn-lg"> NyReader</a></li>
-        <li><a *ngIf="!isLoggedin()" [routerLink]="['Login']" class="btn btn-primary btn-lg"> Login</a></li>
-        <li><a *ngIf="!isLoggedin()" [routerLink]="['Register']" class="btn btn-primary btn-lg"> Register</a></li>
-        <li><a *ngIf="isLoggedin()" [routerLink]="['Home']" class="btn btn-primary btn-lg"> My page</a></li>
-        <li><a *ngIf="isLoggedin()" (click)="logout()" class="btn btn-primary btn-lg"> Sign out</a></li>
-        <li><a class="btn btn-info" (click)="changeLanguage('pl')">PL</a></li>
-        <li><a class="btn btn-info" (click)="changeLanguage('en')">EN</a></li>
-    </ul>
+<sidebar></sidebar>
+
+<div id="wrapper">
+    <div class="container">
+        <div class="col-md-offset-3 col-md-10">
+            <div class="router">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="url container">
-    <div>
-        <h1>translate test</h1>
-        <div>{{'HELLO' | translate}}</div>
-        <div>{{'LOGIN' | translate}}</div>
+<div id="footer">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-offset-3">
+                <p class="text-muted credit">© 2016 | <span><a href="https://github.com/DudaKamil">Kamil Duda</a></span>
+                    | <span><a href="https://pl.linkedin.com/in/kamilduda">LinkedIn</a></span> | <span><a
+                            href="https://github.com/DudaKamil">GitHub</a></span></p>
+            </div>
+        </div>
     </div>
-    <router-outlet></router-outlet>
 </div>
-<footer>Footer</footer>
