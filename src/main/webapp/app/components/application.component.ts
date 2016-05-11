@@ -24,7 +24,6 @@ import {SidebarComponent} from "./sidebar/sidebar.component";
     {path: "/my", name: "Home", component: UserHomeComponent}
 ])
 export class ApplicationComponent {
-    // TODO: ng2-translate for angular 2 rc
     constructor(private _authenticationService: AuthenticationService,
                 private _router: Router,
                 private _translateService: TranslateService) {

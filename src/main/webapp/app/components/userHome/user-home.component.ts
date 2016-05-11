@@ -66,8 +66,6 @@ export class UserHomeComponent implements OnInit {
 
     displayFeed(feed: Feed) {
         this.currentFeed = feed;
-        // TODO: debug
-        console.log(feed);
     }
 
     redirectTo(link: string, event: any) {
@@ -92,8 +90,6 @@ export class UserHomeComponent implements OnInit {
                         } else {
                             console.log("empty");
                         }
-                        // TODO: debug
-                        console.log(json);
                     } catch (error) {
                     }
                 }
