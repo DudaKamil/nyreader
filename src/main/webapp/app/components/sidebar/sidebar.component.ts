@@ -1,14 +1,15 @@
 import {Component} from "@angular/core";
 import {ROUTER_DIRECTIVES, Router} from "@angular/router-deprecated";
 import {isAuthenticated} from "../../services/is-authenticated";
-import {TranslateService} from "ng2-translate";
+import {TranslateService, TranslatePipe} from "ng2-translate";
 import {AuthenticationService} from "../../services/authentication.service";
 
 @Component({
     selector: "sidebar",
     templateUrl: "app/components/sidebar/sidebar.component.html",
     styleUrls: ["app/components/sidebar/sidebar.component.css"],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    pipes: [TranslatePipe]
 })
 export class SidebarComponent {
     constructor(private _authenticationService: AuthenticationService,

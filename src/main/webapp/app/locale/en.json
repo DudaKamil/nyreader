@@ -3,5 +3,9 @@
   "DISPLAY": "Show",
   "MY_FEEDS": "My subscribed feeds",
   "ADD": "Add new",
-  "ADD_NEW_HEADER": "Subscribe to new feed"
+  "ADD_NEW_HEADER": "Subscribe to new feed",
+  "MY_SUBS": "My subscribtions",
+  "LOGIN":"Sign In",
+  "REGISTER":"Sign Up",
+  "SIGN_OUT":"Sign Out"
 }
