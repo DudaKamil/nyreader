@@ -42,6 +42,10 @@ public class UserUtils {
         boolean result = false;
         List<Feed> feeds = user.getFeeds();
 
+        if (feeds == null) {
+            return false;
+        }
+
         Optional<Feed> duplicates = feeds.parallelStream()
                                          .filter(feed -> feed.getUrl().equals(feedUrl))
                                          .findAny();
