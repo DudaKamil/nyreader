@@ -29,5 +29,10 @@
   "WELCOME_MSG": "A light and simple RSS reader.",
   "START": "Start Now!",
   "IMG_ALT": "NyReader sneak peak",
-  "SNEAK": "Have a sneak peak to what we have"
+  "SNEAK": "Have a sneak peak to what we have",
+  "PROVIDE_VALID_URL": "Please provide a valid rss feed address!",
+  "ALREADY_SUBSCRIBED": "You have already subscribed to this rss channel.",
+  "ERROR_PROCESSING": "There was an error processing that channel. Please check if the url is correct.",
+  "ACCOUNT": "My account",
+  "ACC_NAME": "Account name: "
 }

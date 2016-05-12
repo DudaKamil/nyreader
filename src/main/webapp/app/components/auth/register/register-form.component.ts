@@ -13,7 +13,7 @@ import {TranslatePipe} from "ng2-translate";
     styleUrls: ["app/components/auth/register/register-form.component.css"],
     directives: [ROUTER_DIRECTIVES],
     providers: [AuthenticationService, Title],
-    pipes:[TranslatePipe]
+    pipes: [TranslatePipe]
 })
 @CanActivate(() => !isAuthenticated())
 export class RegisterComponent {

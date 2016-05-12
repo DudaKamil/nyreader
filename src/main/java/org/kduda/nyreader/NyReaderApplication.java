@@ -42,13 +42,13 @@ public class NyReaderApplication implements CommandLineRunner {
 //
 //
 //		User admin = new User();
-//		admin.setUsername("admin@example.com");
-//		admin.setPassword(encoder.encode("admin"));
+//		admin.setCurrentPassword("admin@example.com");
+//		admin.setNewPassword(encoder.encode("admin"));
 ////		admin.setFeeds(feeds);
 //
 //		User user = new User();
-//		user.setUsername("user@example.com");
-//		user.setPassword(encoder.encode("user"));
+//		user.setCurrentPassword("user@example.com");
+//		user.setNewPassword(encoder.encode("user"));
 //		user.setFeeds(feeds);
 //
 //		userRepository.save(user);

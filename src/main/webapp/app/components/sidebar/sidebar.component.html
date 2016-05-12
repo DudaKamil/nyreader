@@ -4,6 +4,7 @@
         <li><a *ngIf="!isLoggedin()" [routerLink]="['Login']" class="btn btn-primary btn-lg"> {{'LOGIN' | translate}}</a></li>
         <li><a *ngIf="!isLoggedin()" [routerLink]="['Register']" class="btn btn-primary btn-lg"> {{'REGISTER' | translate}}</a></li>
         <li><a *ngIf="isLoggedin()" [routerLink]="['Home']" class="btn btn-primary btn-lg"> {{'MY_SUBS' | translate}}</a></li>
+        <li><a *ngIf="isLoggedin()" [routerLink]="['Account']" class="btn btn-primary btn-lg"> {{'ACCOUNT' | translate}}</a></li>
         <li><a *ngIf="isLoggedin()" (click)="logout()" class="btn btn-primary btn-lg"> {{'SIGN_OUT' | translate}}</a></li>
     </ul>
     <ul class="lang-menu">

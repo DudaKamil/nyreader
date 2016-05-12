@@ -6,6 +6,9 @@ import {provide} from "@angular/core";
 import {AuthHttp, AuthConfig} from "angular2-jwt";
 import {ApplicationComponent} from "./components/application.component";
 import {TRANSLATE_PROVIDERS, TranslateLoader, TranslateStaticLoader, TranslateService} from "ng2-translate";
+import {enableProdMode} from "@angular/core";
+// TODO: enable production mode
+// enableProdMode();
 
 bootstrap(ApplicationComponent, [
     ROUTER_PROVIDERS,

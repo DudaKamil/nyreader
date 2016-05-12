@@ -85,7 +85,6 @@ public class AuthenticationController {
         return ResponseEntity.ok("success");
     }
 
-    // TODO: check method in front-end
     @RequestMapping(value = "/auth/refresh", method = RequestMethod.GET)
     public ResponseEntity<?> refreshAndGetAuthenticationToken(HttpServletRequest request) {
         String token = request.getHeader(TOKEN_HEADER);

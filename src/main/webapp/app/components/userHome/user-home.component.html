@@ -20,13 +20,16 @@
 
 
             <div [hidden]="feedInput.valid || feedInput.pristine" class="alert alert-danger">
-                Please provide a valid address!
+                {{'PROVIDE_VALID_URL' | translate}}
             </div>
             <div *ngIf="feedAlreadyExists" class="alert alert-danger">
-                You have already subscribed to this channel.
+                {{'ALREADY_SUBSCRIBED' | translate}}
+                <a class="close" data-dismiss="alert" aria-label="close" (click)="dismissExistsError()">&times;</a>
+
             </div>
             <div *ngIf="feedProcessingError" class="alert alert-danger">
-                There was an error processing that channel. Please check if the url is correct.
+                {{'ERROR_PROCESSING' | translate}}
+                <a class="close" data-dismiss="alert" aria-label="close" (click)="dismissProcessingError()">&times;</a>
             </div>
 
         </form>

@@ -29,5 +29,10 @@
   "WELCOME_MSG": "Lekki i prosty czytnik RSS.",
   "START": "Rozpocznij!",
   "IMG_ALT": "NyReader zapowiedz",
-  "SNEAK": "Zobacz, co mamy do zaoferowania"
+  "SNEAK": "Zobacz, co mamy do zaoferowania",
+  "PROVIDE_VALID_URL": "Podaj prawidłowy adres kanału rss!",
+  "ALREADY_SUBSCRIBED": "Już subskrybowałeś ten kanał.",
+  "ERROR_PROCESSING": "Błąd podczas przetważania. Proszę sprawdzić, czy adres url jest poprawny",
+  "ACCOUNT": "Moje konto",
+  "ACC_NAME":"Nazwa konta: "
 }

@@ -1,0 +1,65 @@
+<div class="account-well">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2>{{'ACC_NAME' | translate}}</h2>
+            </div>
+            <div class="col-md-6">
+                <h2>{{accountName}}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--TODO: change password form-->
+<div class="password-well">
+    <h1>Change password</h1>
+    <form [ngFormModel]="passwordForm" novalidate (submit)="onSubmit()" *ngIf="active">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="currentPassword">Current password</label>
+                    <input id="currentPassword" type="password" class="form-control"
+                           placeholder="current password"
+                           [(ngModel)]="model.currentPassword" ngControl="currentPassword" #currentPassword="ngForm">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="newPassword">New password</label>
+                    <input id="newPassword" type="password" class="form-control"
+                           placeholder="new password"
+                           [(ngModel)]="model.newPassword" ngControl="newPassword" #newPassword="ngForm">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class=" form-group">
+                    <label for="confirm_password">{{'PASSWD_CONFIRM' | translate}}</label>
+                    <input id="confirm_password" type="password" class="form-control"
+                           placeholder="{{'PASSWD_CONFIRM_PLACE' | translate}}"
+                           ngControl="confirm_password" #confirm_password="ngForm" [(ngModel)]="model.passwordRepeat"
+                           (keyup)="onKeyup(confirm_password.value)">
+                </div>
+            </div>
+        </div>
+
+
+        <div [hidden]="newPassword.valid || newPassword.pristine" class="alert alert-danger">
+            {{'PASSWD_ERROR' | translate}}
+        </div>
+        <div *ngIf="passwordError" class="alert alert-danger">
+            {{'PASSWD_MATCH_ERROR' | translate}}
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 pull-right">
+                <button type="submit" class="btn btn-success" [disabled]="!passwordForm.valid || passwordError">
+                   Change password
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -83,6 +83,14 @@ export class UserHomeComponent implements OnInit {
         return date.toLocaleString("pl");
     }
 
+    dismissExistsError() {
+        this.feedAlreadyExists = null;
+    }
+
+    dismissProcessingError() {
+        this.feedProcessingError = null;
+    }
+
     private getAllFeeds() {
         this._feedService.getUserFeeds()
             .subscribe(

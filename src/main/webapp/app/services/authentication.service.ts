@@ -71,4 +71,9 @@ export class AuthenticationService {
         localStorage.removeItem("userID");
         localStorage.removeItem("user");
     }
+
+    changePassword(model: {currentPassword: string; newPassword: string}) {
+        let userData: string = JSON.stringify(model);
+        return this._authHttp.post(this._userEndpoint + "/change", userData, this._options);
+    }
 }
