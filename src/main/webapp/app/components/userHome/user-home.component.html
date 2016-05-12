@@ -34,22 +34,33 @@
 </div>
 
 <div class="well">
-        <p class="feeds-title">{{'MY_FEEDS' | translate}}</p>
-        <ul class="feed-list">
-            <li *ngFor="let feed of feeds">
-                <div class="row">
-                    <div class="col-md-8">
-                        <a href="{{feed.link}}" class="btn btn-title" (click)="redirectTo(feed.link, $event)">{{feed.title}}</a>
-                    </div>
-                    <div class="col-md-2">
-                        <a class="btn btn-display" (click)="displayFeed(feed)">{{'DISPLAY' | translate}}</a>
-                    </div>
-                    <div class="col-md-2">
-                        <a class="btn btn-delete" (click)="deleteFeed(feed.url)">{{'DELETE' | translate}}</a>
-                    </div>
+    <p class="feeds-title">{{'MY_FEEDS' | translate}}</p>
+    <ul class="feed-list">
+        <li *ngFor="let feed of feeds">
+            <div class="row">
+                <div class="col-md-8">
+                    <a href="{{feed.link}}" class="btn btn-title"
+                       (click)="redirectTo(feed.link, $event)">{{feed.title}}</a>
                 </div>
-            </li>
-        </ul>
+                <div class="col-md-2">
+                    <a class="btn btn-display" (click)="displayFeed(feed)">{{'DISPLAY' | translate}}</a>
+                </div>
+                <div class="col-md-2">
+                    <a class="btn btn-delete" (click)="deleteFeed(feed.url)">{{'DELETE' | translate}}</a>
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+    <div class="spinner" *ngIf="isLoading">
+        <div class="sk-folding-cube">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
 </div>
 
 <div *ngIf="currentFeed" class="well">

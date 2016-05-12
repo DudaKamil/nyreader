@@ -29,19 +29,24 @@ export class UserHomeComponent implements OnInit {
     public currentFeed: Feed = null;
     public feedAlreadyExists: boolean = false;
     public feedProcessingError: boolean = false;
+    public isLoading: boolean = false;
 
     onSubmit() {
         let newFeed: Feed = new Feed();
         newFeed.url = this.newUrl;
+        this.isLoading = true;
 
         this._feedService.postNewUrl(this.newUrl)
             .subscribe(
                 res => {
+                    this.isLoading = false;
+
                     this.getAllFeeds();
                     this.feedProcessingError = false;
                     this.feedAlreadyExists = false;
                 },
                 error => {
+                    this.isLoading = false;
                     let msg: string = error._body;
                     if (msg == "error") {
                         this.feedProcessingError = true;
@@ -82,6 +87,8 @@ export class UserHomeComponent implements OnInit {
         this._feedService.getUserFeeds()
             .subscribe(
                 res => {
+                    this.isLoading = false;
+
                     try {
                         let json = res.json();
                         if (json !== "") {
