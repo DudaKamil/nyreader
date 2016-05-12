@@ -25,7 +25,6 @@
             <div *ngIf="feedAlreadyExists" class="alert alert-danger">
                 {{'ALREADY_SUBSCRIBED' | translate}}
                 <a class="close" data-dismiss="alert" aria-label="close" (click)="dismissExistsError()">&times;</a>
-
             </div>
             <div *ngIf="feedProcessingError" class="alert alert-danger">
                 {{'ERROR_PROCESSING' | translate}}

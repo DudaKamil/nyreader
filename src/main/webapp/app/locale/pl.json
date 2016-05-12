@@ -34,5 +34,13 @@
   "ALREADY_SUBSCRIBED": "Już subskrybowałeś ten kanał.",
   "ERROR_PROCESSING": "Błąd podczas przetważania. Proszę sprawdzić, czy adres url jest poprawny",
   "ACCOUNT": "Moje konto",
-  "ACC_NAME":"Nazwa konta: "
+  "ACC_NAME": "Nazwa konta: ",
+  "PASSSWD_CHANGE": "Zmień hasło",
+  "CURR_PASSWD": "Aktualne hasło",
+  "CURR_PASSWD_PLACE": "aktualne hasło",
+  "NEW_PASSWD": "Nowe hasło",
+  "NEW_PASSWD_PLACE": "nowe hasło",
+  "PASSWD_CHANGED": "Hasło zostało zmienione pomyślnie",
+  "CHECK_CURR_PASSWD": "Sprawdź swoje aktualne hasło",
+  "CHANGE_PASSWD": "Zmień moje hasło"
 }

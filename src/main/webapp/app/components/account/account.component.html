@@ -11,16 +11,15 @@
     </div>
 </div>
 
-<!--TODO: change password form-->
 <div class="password-well">
-    <h1>Change password</h1>
+    <h1>{{'PASSSWD_CHANGE' | translate}}</h1>
     <form [ngFormModel]="passwordForm" novalidate (submit)="onSubmit()" *ngIf="active">
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="currentPassword">Current password</label>
+                    <label for="currentPassword">{{'CURR_PASSWD' | translate}}</label>
                     <input id="currentPassword" type="password" class="form-control"
-                           placeholder="current password"
+                           placeholder="{{'CURR_PASSWD_PLACE' | translate}}"
                            [(ngModel)]="model.currentPassword" ngControl="currentPassword" #currentPassword="ngForm">
                 </div>
             </div>
@@ -29,9 +28,9 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="newPassword">New password</label>
+                    <label for="newPassword">{{'NEW_PASSWD' | translate}}</label>
                     <input id="newPassword" type="password" class="form-control"
-                           placeholder="new password"
+                           placeholder="{{'NEW_PASSWD_PLACE' | translate}}"
                            [(ngModel)]="model.newPassword" ngControl="newPassword" #newPassword="ngForm">
                 </div>
             </div>
@@ -46,18 +45,24 @@
             </div>
         </div>
 
-
-        <div [hidden]="newPassword.valid || newPassword.pristine" class="alert alert-danger">
-            {{'PASSWD_ERROR' | translate}}
-        </div>
         <div *ngIf="passwordError" class="alert alert-danger">
             {{'PASSWD_MATCH_ERROR' | translate}}
+        </div>
+
+        <div *ngIf="isSuccess" class="alert alert-success">
+            {{'PASSWD_CHANGED' | translate}}
+            <a class="close" data-dismiss="alert" aria-label="close" (click)="dismissInfo()">&times;</a>
+        </div>
+
+        <div *ngIf="isError" class="alert alert-danger">
+            {{'CHECK_CURR_PASSWD' | translate}}
+            <a class="close" data-dismiss="alert" aria-label="close" (click)="dismissError()">&times;</a>
         </div>
 
         <div class="row">
             <div class="col-md-4 pull-right">
                 <button type="submit" class="btn btn-success" [disabled]="!passwordForm.valid || passwordError">
-                   Change password
+                    {{'CHANGE_PASSWD' | translate}}
                 </button>
             </div>
         </div>

@@ -22,6 +22,8 @@ export class AccountComponent {
     public passwordForm: any;
     public passwordError: string;
     public active: boolean = true;
+    public isSuccess: boolean = false;
+    public isError: boolean = false;
 
     constructor(private _authenticationService: AuthenticationService,
                 private _title: Title,
@@ -41,6 +43,9 @@ export class AccountComponent {
     }
 
     onSubmit() {
+        this.isSuccess = false;
+        this.isError = false;
+
         let model = {
             currentPassword: this.model.currentPassword,
             newPassword: this.model.newPassword
@@ -49,26 +54,38 @@ export class AccountComponent {
         this._authenticationService.changePassword(model)
             .subscribe(
                 msg => {
-                    msg = msg.json();
-                    console.log(msg);
+                    this.isSuccess = true;
                 },
                 err => {
-                    console.log(err);
+                    this.isError = true;
                 }
             );
 
         this.clearModel();
+
+        // Reset the form with a new hero AND restore 'pristine' class state
+        // by toggling 'active' flag which causes the form
+        // to be removed/re-added in a tick via NgIf
+        // TODO: Workaround until NgForm has a reset method (#6822)
+        this.active = false;
+        setTimeout(() => this.active = true, 0);
     }
 
     onKeyup(value) {
-        console.log(value);
-        console.log(this.model.newPassword);
         if (value.localeCompare(this.model.newPassword) != "0") {
             this.passwordError = "Passwords does not match!";
 
         } else {
             this.passwordError = null;
         }
+    }
+
+    dismissInfo() {
+        this.isSuccess = false;
+    }
+
+    dismissError() {
+        this.isError = false;
     }
 
     private clearModel() {

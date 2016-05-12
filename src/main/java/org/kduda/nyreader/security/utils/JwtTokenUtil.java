@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-// TODO: check and refactor
 @Component
 public class JwtTokenUtil implements Serializable {
 	private static final String CLAIM_KEY_USERNAME = "sub";

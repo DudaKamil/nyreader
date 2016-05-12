@@ -34,5 +34,13 @@
   "ALREADY_SUBSCRIBED": "You have already subscribed to this rss channel.",
   "ERROR_PROCESSING": "There was an error processing that channel. Please check if the url is correct.",
   "ACCOUNT": "My account",
-  "ACC_NAME": "Account name: "
+  "ACC_NAME": "Account name: ",
+  "PASSSWD_CHANGE": "Change your password",
+  "CURR_PASSWD": "Current password",
+  "CURR_PASSWD_PLACE": "current password",
+  "NEW_PASSWD": "New password",
+  "NEW_PASSWD_PLACE": "new password",
+  "PASSWD_CHANGED": "Password changed successfully",
+  "CHECK_CURR_PASSWD": "Please check your current password",
+  "CHANGE_PASSWD": "Change my password"
 }

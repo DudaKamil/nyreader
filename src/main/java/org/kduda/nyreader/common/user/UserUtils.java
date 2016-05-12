@@ -51,4 +51,17 @@ public class UserUtils {
 
         return result;
     }
+
+    public boolean saveUser(User user) {
+        boolean result = false;
+
+        try {
+            userRepository.save(user);
+            result = true;
+        } catch (Exception e) {
+            result = false;
+        }
+
+        return result;
+    }
 }
