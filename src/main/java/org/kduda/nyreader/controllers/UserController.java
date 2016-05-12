@@ -5,19 +5,11 @@ import org.kduda.nyreader.common.user.User;
 import org.kduda.nyreader.common.user.UserDetailsServiceImpl;
 import org.kduda.nyreader.common.user.UserUtils;
 import org.kduda.nyreader.security.common.JwtUser;
-import org.kduda.nyreader.security.domain.JwtAuthenticationRequest;
-import org.kduda.nyreader.security.service.JwtAuthenticationResponse;
 import org.kduda.nyreader.security.utils.JwtTokenUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mobile.device.Device;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,9 +32,6 @@ public class UserController {
     @Autowired
     private UserUtils userUtils;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
-
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public JwtUser getAuthenticatedUser(HttpServletRequest request) {
         String token = request.getHeader(TOKEN_HEADER);
@@ -53,6 +42,8 @@ public class UserController {
     @RequestMapping(value = "/user/change", method = RequestMethod.POST)
     public ResponseEntity<?> createAuthenticationToken(@RequestBody ChangePasswordRequest changePasswordRequest, HttpServletRequest request)
         throws Exception {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+
         User user = userUtils.getCurrentUser(request);
         String currentPassword = changePasswordRequest.getCurrentPassword();
         String newPassword = changePasswordRequest.getNewPassword();
