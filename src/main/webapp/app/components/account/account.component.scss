@@ -43,8 +43,13 @@ $red: #a94442;
   border: 0 solid transparent;
   background-color: #e8e8e8;
   @include shadow;
-  padding:1em;
+  padding: 1em;
 }
-.btn-success{
+
+.btn-success {
   width: 100%;
+}
+
+.btn-success {
+  @include shadow;
 }
