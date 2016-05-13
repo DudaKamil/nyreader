@@ -4,8 +4,9 @@
 ## About
 RSS feeds reader web application.
 
-Created using Java Spring and Angular 2.
+Created using Angular 2, Java Spring and MongoDB.
 
+### Application dashboard
 ![demo](/img/demo.png)
 
 ## Build and run
