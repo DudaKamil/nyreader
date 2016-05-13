@@ -234,7 +234,18 @@ ul {
 }
 
 .entries-list {
-  border: #646464 solid;
+  border: #7b7b7b solid;
   border-width: 1px 0 0 0;
   padding-top: 1em;
+}
+
+.feed-item {
+  border: #acacac solid !important;
+  border-width: 0 0 1px 0 !important;
+  padding-bottom: 1em;
+  margin-bottom: 0 !important;
+}
+
+.feed-item:last-child {
+  border: 0!important;
 }
