@@ -58,6 +58,7 @@ crashlytics-build.properties
 /documentation/ProjectOverview.synctex.gz
 /documentation/ProjectOverview.toc
 *.pdf
+/documentation/PZNU
 
 # NodeJS
 node_modules
