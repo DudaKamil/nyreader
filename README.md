@@ -7,7 +7,7 @@ RSS feeds reader web application.
 Created using Angular 2, Java Spring and MongoDB.
 
 ### Application dashboard
-![demo](/img/demo.png)
+![demo](/git_images/dash.png)
 
 ## Build and run
 Requires a running MongoDB database (default port: 27017).
