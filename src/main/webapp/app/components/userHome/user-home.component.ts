@@ -21,6 +21,7 @@ export class UserHomeComponent implements OnInit {
 
     ngOnInit(): any {
         this.getAllFeeds();
+        this.refreshFeeds();
     }
 
     public feeds: Feed[] = [];
@@ -63,6 +64,10 @@ export class UserHomeComponent implements OnInit {
     }
 
     deleteFeed(feed: string) {
+        if (this.currentFeed.url == feed) {
+            this.currentFeed = null;
+        }
+
         this._feedService.deleteFeed(feed)
             .subscribe(
                 res => this.getAllFeeds()
@@ -97,6 +102,22 @@ export class UserHomeComponent implements OnInit {
                 res => {
                     this.isLoading = false;
 
+                    try {
+                        let json = res.json();
+                        if (json !== "") {
+                            this.feeds = json;
+                        } else {
+                            console.log("empty");
+                        }
+                    } catch (error) {
+                    }
+                }
+            );
+    }
+
+    private refreshFeeds() {
+        this._feedService.refreshFeed()
+            .subscribe(res => {
                     try {
                         let json = res.json();
                         if (json !== "") {

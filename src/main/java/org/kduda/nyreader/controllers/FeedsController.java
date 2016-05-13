@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -37,6 +38,21 @@ public class FeedsController {
     public List<Feed> getUserFeeds(HttpServletRequest request) {
         User user = this.userUtils.getCurrentUser(request);
         return user.getFeeds();
+    }
+
+    @RequestMapping(value = "/feed/refresh", method = RequestMethod.GET)
+    public List<Feed> refreshAllFeeds(HttpServletRequest request) {
+        User user = this.userUtils.getCurrentUser(request);
+
+        List<Feed> oldFeeds = user.getFeeds();
+        List<Feed> newFeeds = new ArrayList<>();
+
+        oldFeeds.forEach(feed -> newFeeds.add(feedReaderService.readFeed(feed.getUrl())));
+
+        user.setFeeds(newFeeds);
+        userRepository.save(user);
+
+        return newFeeds;
     }
 
     @RequestMapping(value = "/feed", method = RequestMethod.POST)

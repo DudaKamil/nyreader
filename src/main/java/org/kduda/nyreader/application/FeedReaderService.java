@@ -3,6 +3,7 @@ package org.kduda.nyreader.application;
 import com.rometools.rome.feed.synd.SyndFeed;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
+import org.kduda.nyreader.common.feed.Feed;
 import org.springframework.stereotype.Component;
 
 import java.net.URL;
@@ -13,13 +14,6 @@ public class FeedReaderService {
 
     public SyndFeed getCurrentFeed() {
         return currentFeed;
-    }
-
-    public void read() throws Exception {
-        SyndFeedInput syndFeedInput = new SyndFeedInput();
-
-        URL url = new URL("http://rss.gazeta.pl/pub/rss/kielce.xml");
-        SyndFeed feed = syndFeedInput.build(new XmlReader(url));
     }
 
     public boolean checkValidity(String feedUrl) {
@@ -38,6 +32,19 @@ public class FeedReaderService {
             result = false;
 
         return result;
+    }
+
+    public Feed readFeed(String feedUrl) {
+        SyndFeedInput syndFeedInput = new SyndFeedInput();
+        SyndFeed feed = null;
+
+        try {
+            URL url = new URL(feedUrl);
+            feed = syndFeedInput.build(new XmlReader(url));
+        } catch (Exception ignored) {
+        }
+
+        return FeedFactory.create(feed, feedUrl);
     }
 }
 

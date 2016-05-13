@@ -21,12 +21,12 @@ export class FeedService {
         return this._authHttp.get(this._feedsEndpoint);
     }
 
-    postNewUrl(newUrl: string) {
-        return this._authHttp.post(this._feedsEndpoint, newUrl, this._options);
+    refreshFeed() {
+        return this._authHttp.get(this._feedsEndpoint + "/refresh", this._options);
     }
 
-    refreshFeed(feedUrl: string) {
-        return this._authHttp.post(this._feedsEndpoint + "/refresh", feedUrl, this._options);
+    postNewUrl(newUrl: string) {
+        return this._authHttp.post(this._feedsEndpoint, newUrl, this._options);
     }
 
     deleteFeed(feed: string) {

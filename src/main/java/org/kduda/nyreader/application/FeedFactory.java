@@ -38,6 +38,10 @@ public final class FeedFactory {
 
         resultFeed.setEntries(entries);
 
+        resultFeed.getEntries().sort(
+            (o1, o2) -> o2.getDate().compareTo(o1.getDate())
+        );
+
         return resultFeed;
     }
 }

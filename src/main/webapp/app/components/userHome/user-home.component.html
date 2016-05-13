@@ -69,6 +69,9 @@
     <div>
         <p class="feeds-title">{{currentFeed.title}}</p>
     </div>
+    <div>
+        <p class="feeds-description">{{currentFeed.description}}</p>
+    </div>
     <ul class="entries-list">
         <li *ngFor="let entry of currentFeed.entries">
             <a href="{{entry.link}}" (click)="redirectTo(entry.link, $event)" class="btn btn-entry">

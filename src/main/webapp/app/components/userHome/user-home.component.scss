@@ -84,6 +84,10 @@ $red: #a94442;
   font-weight: bold;
 }
 
+.feeds-description {
+  font-size: 2em;
+}
+
 .entries-list {
   margin-top: 20px;
   list-style: none;
@@ -225,6 +229,12 @@ ul {
   }
 }
 
-.spinner{
-  margin-top: 2em;
+.spinner {
+  margin-top: 3em;
+}
+
+.entries-list {
+  border: #646464 solid;
+  border-width: 1px 0 0 0;
+  padding-top: 1em;
 }
