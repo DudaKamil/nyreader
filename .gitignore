@@ -53,12 +53,14 @@ crashlytics-build.properties
 *.log
 
 # Documentation
-/documentation/ProjectOverview.aux
-/documentation/missfont.log
-/documentation/ProjectOverview.synctex.gz
-/documentation/ProjectOverview.toc
+*.aux
+*missfont.log
+*.synctex.gz
+*.out
+*.lof
+*.toc
 *.pdf
-/documentation/PZNU
+documentation/PZNU
 
 # NodeJS
 node_modules
