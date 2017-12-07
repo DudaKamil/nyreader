@@ -1,5 +1,5 @@
 # NyReader
-[![Build Status](https://travis-ci.org/DudaKamil/nyreader.svg?branch=master)](https://travis-ci.org/DudaKamil/nyreader)
+[![Build Status](https://travis-ci.org/kamilduda/nyreader.svg?branch=master)](https://travis-ci.org/kamilduda/nyreader)
 
 ## About
 RSS feeds reader web application.
