@@ -21,5 +21,8 @@ Requires a running MongoDB database (default port: 27017).
     - changes will be copied into `src/main/resources/static/`
 * run `npm rebuild node-sass` if gulp does not work
 
+
+Profiled with [![jprofiler](https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png)](https://www.ej-technologies.com/products/jprofiler/overview.html) [Java profiler](https://www.ej-technologies.com/images/product_banners/jprofiler_medium.png).
+
 ## License
 [GNU General Public License v3.0](/LICENSE.md)
